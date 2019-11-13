@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://www.cnblogs.com/wh4am1/p/9770511.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="下载程序后发现是输入1-8数字中的一位 至于怎么玩，我到现在都没弄懂 不多说，直接拖入Ollydbg 搜索 分析了一下字符串，发现有一个显示flag的字符串 双击过去看看，发现类似于一个函数。 接下来">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园</title>
+    
+    <link rel="stylesheet" href="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/bundle-blacklowkey.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/bundle-blacklowkey-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/wh4am1/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/wh4am1/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/wh4am1/wlwmanifest.xml">
+    <script async="" src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/analytics.js"></script><script src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/jquery-2.2.0.min.js"></script><style type="text/css"></style>
+    <script src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 340041;
+        var currentBlogApp = 'wh4am1';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/f.txt"></script><script src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/pubads_impl_2019110401.js" async=""></script></head><style type="text/css" id="8129945540"></style>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/wh4am1/"><img id="blogLogo" src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/wh4am1/">admin-神风</a>
+</h1>
+<h2>
+古之成大事者,不惟有超世之才,亦必有坚忍不拔之志
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/wh4am1/">
+首页</a>
+</li>
+<li>
+
+<a id="blog_nav_newpost" class="menu" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/admin-%E7%A5%9E%E9%A3%8E">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/wh4am1/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+140&nbsp; </span>
+<span id="stats_article_count">文章 - 
+0&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+14</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/wh4am1/p/9770511.html">BugkuCTF ---游戏过关 writeup</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <p>下载程序后发现是输入1-8数字中的一位</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011084511209-1880022414.png" alt=""></p>
+<p>至于怎么玩，我到现在都没弄懂</p>
+<p>&nbsp;</p>
+<p>不多说，直接拖入Ollydbg</p>
+<p>搜索</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011084805288-1069873298.png" alt=""></p>
+<p>&nbsp;</p>
+<p>分析了一下字符串，发现有一个显示flag的字符串</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011084831791-1432156705.png" alt=""></p>
+<p>&nbsp;</p>
+<p>&nbsp;双击过去看看，发现类似于一个函数。</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011084922970-696797948.png" alt=""></p>
+<p>接下来的思路就很简单了，分析程序输入数字后怎么判断的，在到跳转点上修改跳转到这个flag的函数里面去</p>
+<p>经过反复断点调试</p>
+<p>最终找到了输入%d</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011085203012-1513707343.png" alt=""></p>
+<p>在此处下一个断点，然后慢慢单步走，找个跳转命令</p>
+<p>我们可以看到，找到一个跳转实现的地方</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011085346835-148776132.png" alt=""></p>
+<p>jle short 0123F560</p>
+<p>&nbsp;</p>
+<p>修改此汇编成jle long 0123E940</p>
+<p>然后取消断点，运行一下</p>
+<p><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/1124287-20181011085556302-2114619391.png" alt=""></p>
+<p>得到zsctf{T9is_tOpic_1s_v5ry_int7resting_b6t_others_are_n0t}</p>
+<p>&nbsp;</p>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/wh4am1/category/987877.html" target="_blank">ctf</a></div>
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9770511,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;9703e828-5907-e711-845c-ac853d9f53ac&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/wh4am1/" target="_blank"><img src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/20170319114304.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/wh4am1/">admin-神风</a><br>
+            <a href="https://home.cnblogs.com/u/wh4am1/followees/">关注 - 5</a><br>
+            <a href="https://home.cnblogs.com/u/wh4am1/followers/">粉丝 - 48</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;9703e828-5907-e711-845c-ac853d9f53ac&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9770511,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(9770511,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/wh4am1/p/9251880.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/wh4am1/p/9251880.html" title="发布于 2018-07-01 23:49">某智能合约的铸币后门</a>
+    <br>
+    <a href="https://www.cnblogs.com/wh4am1/p/9862210.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/wh4am1/p/9862210.html" title="发布于 2018-10-27 16:41">Java可视化编程---SendMail工具的开发</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2018-10-11 08:56</span>&nbsp;<a href="https://www.cnblogs.com/wh4am1/">admin-神风</a> 阅读(<span id="post_view_count">1451</span>) 评论(<span id="post_comment_count">0</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=9770511" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(9770511); return false;">收藏</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 340041, cb_blogApp = 'wh4am1', cb_blogUserGuid = '9703e828-5907-e711-845c-ac853d9f53ac';
+    var cb_entryId = 9770511, cb_entryCreatedDate = '2018-10-11 08:56', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/wh4am1/p/9770511.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/wh4am1/p/9770511.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://ke.qq.com/huodong/mashibing_pc/index.html?from=800018451" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-马士兵&#39;)">【培训】马士兵老师强势回归！Java线下课程全免费，双十一大促！</a><br><a href="https://www.jdcloud.com/cn/activity/year-end?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=q4vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-京东云&#39;)">【活动】京东云服务器_云主机低于1折，低价高性能产品备战双11</a><br><a href="https://www.ctyun.cn/activity/20191111?hmsr=%E7%9C%8B%E7%9C%8B-%E5%8D%9A%E5%AE%A2%E5%9B%AD-%E5%8F%8C11-1106&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】天翼云双十一翼降到底，云主机11.11元起，抽奖送大礼</a><br><a href="https://cloud.tencent.com/act/double11/reserve?fromSource=gwzcw.3000742.3000742.3000742&amp;utm_medium=cpc&amp;utm_id=gwzcw.3000742.3000742.3000742" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【优惠】腾讯云 11.11智惠上云，爆款提前购与双11活动同价</a><br><a href="https://www.getui.com/2019devfest?f=5&amp;p=10&amp;c=15&amp;ch=1&amp;hmsr=%E5%8D%9A%E5%AE%A2%E5%9B%AD&amp;hmpl=2019%E5%BC%80%E5%8F%91%E8%80%85%E8%8A%82&amp;hmcu=PC&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-个推-1&#39;)">【福利】个推四大热门移动开发SDK全部免费用一年，限时抢！</a><br><a href="https://www.qiniu.com/events/20191111?utm_campaign=2019_1111&amp;utm_content=cnblogs_1111&amp;utm_medium=banner&amp;utm_source=cnblogs&amp;utm_term=cnblogs_1111" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-七牛云&#39;)">【优惠】七牛云采购嘉年华，云存储、CDN等云产品低至1折</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./BugkuCTF ---游戏过关 writeup - admin-神风 - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="社团的CTF逆向题WriteUp" href="https://www.cnblogs.com/QKSword/p/9095242.html" target="_blank" onclick="clickRecomItmem(9095242)">社团的CTF逆向题WriteUp</a><br>·  <a title="BUGKUctf-web-writeup" href="https://www.cnblogs.com/zhengjim/p/6972527.html" target="_blank" onclick="clickRecomItmem(6972527)">BUGKUctf-web-writeup</a><br>·  <a title="IDF-CTF-简单的Elf逆向Writeup" href="https://www.cnblogs.com/WangAoBo/p/6365987.html" target="_blank" onclick="clickRecomItmem(6365987)">IDF-CTF-简单的Elf逆向Writeup</a><br>·  <a title="iscc2016 pwn部分writeup" href="https://www.cnblogs.com/Joe-Z/p/5528762.html" target="_blank" onclick="clickRecomItmem(5528762)">iscc2016 pwn部分writeup</a><br>·  <a title="DDCTF2018线上赛writeup" href="https://www.cnblogs.com/semishigure/p/8930257.html" target="_blank" onclick="clickRecomItmem(8930257)">DDCTF2018线上赛writeup</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/9770511">更多推荐...</a></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/647511/" target="_blank">《华为是谁》纪录短片集登陆BBC：曝光大量任正非不为人知经历</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647510/" target="_blank">海康威视董事胡扬忠、龚虹嘉因涉嫌信披违法违规遭证监会立案调查</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647509/" target="_blank">更多韩国学者被发现将其子女列为合作者</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647508/" target="_blank">物理学家用光创造了一种新的物质状态</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647507/" target="_blank">金山软件Q3营收20.229亿元 同比增长32%</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    <h2><a href="javascript:var%20KICKASSVERSION=&#39;2.0&#39;; var%20s%20=%20document.createElement(&#39;script&#39;); s.type=&#39;text/javascript&#39;; document.body.appendChild(s); s.src=&#39;https://files.cnblogs.com/files/wh4am1/kickass.js&#39;; void(0);">开启页面杀手小游戏</a></h2>
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/wh4am1/">
+            admin-神风
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/wh4am1/" title="入园时间：2017-03-13">
+            2年8个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/wh4am1/followers/">
+            48
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/wh4am1/followees/">
+            5
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;9703e828-5907-e711-845c-ac853d9f53ac&#39;)">+加关注</a></div>
+        <script>getFollowStatus('9703e828-5907-e711-845c-ac853d9f53ac');</script>
+    </div>
+</div>
+
+</div>
+
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/10/13&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2019年11月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/12/13&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">27</td>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        2
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            3
+                        </td>
+                            <td class="" align="center">
+                                4
+                            </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            9
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="CalTodayDay" align="center">
+                                13
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            16
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            23
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            30
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            7
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+<div id="sidebar_shortcut" class="sidebar-block">
+    <div class="catListLink">
+<h3 class="catListTitle">
+常用链接
+</h3>
+<ul>
+		<li>
+
+<a href="https://www.cnblogs.com/wh4am1/p/" title="我的博客的随笔列表">我的随笔</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/wh4am1/MyComments.html" title="我的发表过的评论列表">我的评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/wh4am1/OtherPosts.html" title="我评论过的随笔列表">我的参与</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/wh4am1/RecentComments.html" title="我的博客的评论列表">最新评论</a>
+</li>
+		<li>
+
+<a href="https://www.cnblogs.com/wh4am1/tag/" title="我的博客的标签列表">我的标签</a>
+</li>
+
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/978635.html" rel="" target="">
+    C/C++(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/987877.html" rel="" target="">
+    ctf(15)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/967770.html" rel="" target="">
+    Linux(9)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964606.html" rel="" target="">
+    PHP(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/1006034.html" rel="" target="">
+    Python(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/968105.html" rel="" target="">
+    tools(10)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964170.html" rel="" target="">
+    web端漏洞(21)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964628.html" rel="" target="">
+    二进制安全(14)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964141.html" rel="" target="">
+    服务器提权(38)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/993701.html" rel="" target="">
+    汇编(8)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/1245422.html" rel="" target="">
+    区块链安全(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964610.html" rel="" target="">
+    渗透测试中的技巧(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/964461.html" rel="" target="">
+    实战漏洞挖掘(19)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/967581.html" rel="" target="">
+    网络安全(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/category/994146.html" rel="" target="">
+    原创(12)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/10.html" rel="" target="">
+    2019年10月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/09.html" rel="" target="">
+    2019年9月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/08.html" rel="" target="">
+    2019年8月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/06.html" rel="" target="">
+    2019年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/04.html" rel="" target="">
+    2019年4月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/03.html" rel="" target="">
+    2019年3月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/02.html" rel="" target="">
+    2019年2月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2019/01.html" rel="" target="">
+    2019年1月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/12.html" rel="" target="">
+    2018年12月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/11.html" rel="" target="">
+    2018年11月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/10.html" rel="" target="">
+    2018年10月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/07.html" rel="" target="">
+    2018年7月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/06.html" rel="" target="">
+    2018年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/05.html" rel="" target="">
+    2018年5月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/04.html" rel="" target="">
+    2018年4月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/03.html" rel="" target="">
+    2018年3月(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/02.html" rel="" target="">
+    2018年2月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2018/01.html" rel="" target="">
+    2018年1月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/12.html" rel="" target="">
+    2017年12月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/11.html" rel="" target="">
+    2017年11月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/10.html" rel="" target="">
+    2017年10月(5)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/09.html" rel="" target="">
+    2017年9月(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/08.html" rel="" target="">
+    2017年8月(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/07.html" rel="" target="">
+    2017年7月(12)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/06.html" rel="" target="">
+    2017年6月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/05.html" rel="" target="">
+    2017年5月(9)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/04.html" rel="" target="">
+    2017年4月(25)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/archive/2017/03.html" rel="" target="">
+    2017年3月(40)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_imagecategory" class="catListImageCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+相册
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wh4am1/gallery/1049236.html" rel="nofollow noopener noreferrer" target="">
+    漏洞截图
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links974765" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+友情链接
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="http://bbs.ichunqiu.com/" rel="nofollow noopener noreferrer" target="">
+    i春秋论坛
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://0u0.im/" rel="nofollow noopener noreferrer" target="">
+    Meng
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="http://www.inksec.cn/" rel="nofollow noopener noreferrer" target="">
+    墨是人性'blog
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="http://www.ctyme.com/intr/int.htm" rel="nofollow noopener noreferrer" target="">
+    汇编int指令大全
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://6o9.im/" rel="nofollow noopener noreferrer" target="">
+    碧波老婆
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/wh4am1/p/10142744.html#4231304">1. Re:利用cve-2017-11882的一次渗透测试</a></li>
+                    <li class="recent_comment_body">@ 射满东城湖之前有想过，但是有些不好，经过排查，就只有开共享是没有提示的，哈哈有机会可以自己试试...</li>
+                    <li class="recent_comment_author">--admin-神风</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/wh4am1/p/10142744.html#4231295">2. Re:利用cve-2017-11882的一次渗透测试</a></li>
+                    <li class="recent_comment_body">在外网的情况下 不开共享也可以吧 mshta嘛</li>
+                    <li class="recent_comment_author">--射满东城湖</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/wh4am1/p/6637840.html#4231293">3. Re:（转载）打破某些大牛比较呵呵的MySQL无file权限读root hash的谣言</a></li>
+                    <li class="recent_comment_body">哈哈哈哈 真实</li>
+                    <li class="recent_comment_author">--射满东城湖</li>
+                    <li class="recent_comment_title"><a href="http://www.cnblogs.com/wh4am1/p/8904113.html#3959404">4. Re:CS1.6找金钱和人物血量</a></li>
+                    <li class="recent_comment_body">老大就是给力</li>
+                    <li class="recent_comment_author">--磊磊333</li>
+                    <li class="recent_comment_title"><a href="http://www.cnblogs.com/wh4am1/p/6664789.html#3887942">5. Re:实战入侵上海实验学校</a></li>
+                    <li class="recent_comment_body">@ 胡萝卜hh我这个是头像上传点，上传后直接去审查元素地址就行了...</li>
+                    <li class="recent_comment_author">--admin-神风</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6668248.html">
+                            1. 关于void main()的误区(15821)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6687199.html">
+                            2. PHP渗透中的奇淫技巧--检查相等时的漏洞(9998)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6542398.html">
+                            3. 本地文件包含漏洞（LFI漏洞）(6734)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6717530.html">
+                            4. Windows 0day成功验证之ETERNALBLUE(6407)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6683022.html">
+                            5. 破解神器Hashcat使用简介(6310)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+<div id="sidebar_topcommentedposts" class="sidebar-block">
+    <div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6664789.html">
+                            1. 实战入侵上海实验学校(3)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/7708373.html">
+                            2. [Assembly]汇编编写简易键盘记录器(2)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/6613715.html">
+                            3. 我是如何从一个xss到某个浏览器的远程命令执行(2)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/10142744.html">
+                            4. 利用cve-2017-11882的一次渗透测试(2)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/wh4am1/p/8904113.html">
+                            5. CS1.6找金钱和人物血量(1)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 推荐排行榜 -->
+<div id="sidebar_topdiggedposts" class="sidebar-block">
+    
+<div id="topdigg_posts_wrap">
+    <div class="catListView">
+        <h3 class="catListTitle">推荐排行榜</h3>
+        <div id="TopDiggPostsBlock">
+            <ul style="word-break: break-all">
+                        <li>
+                            <a href="https://www.cnblogs.com/wh4am1/p/6664789.html">
+                                1. 实战入侵上海实验学校(3)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/wh4am1/p/6622202.html">
+                                2. 【原创】初谈缓冲区栈溢出(2)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/wh4am1/p/6542398.html">
+                                3. 本地文件包含漏洞（LFI漏洞）(1)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/wh4am1/p/6576426.html">
+                                4. 入侵某有限公司#并成功提下西部数码某虚拟主机(1)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.cnblogs.com/wh4am1/p/6613759.html">
+                                5. MySQL启动项提权(1)
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div></div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 admin-神风
+<br><span id="poweredby">Powered by .NET Core 3.0.0 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+
+</body></html>
