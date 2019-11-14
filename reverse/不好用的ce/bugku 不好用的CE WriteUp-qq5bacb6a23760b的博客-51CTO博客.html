@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://blog.51cto.com/13992485/2429569 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="favicon" rel="shortcut icon" href="https://blog.51cto.com/favicon.ico">
+        <title>bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客</title>
+    <meta name="keywords" content="网络/安全,安全技术">
+<style type="text/css"></style><meta name="description" content="好用的CE这题有好多种解法，我会一个个解释。只用OD只用CECE+OD下载文件点两下试试无壳1.只用OD只用OD我只想出两种办法，虽然只是下断点的方式不同，但也代表了不同的思路。一、 第一种是最直接的也是最笨的，在搜索字符串里的所有内容都下断点，这里幸好搜索的字符串不是很多，而且flag凑巧是直接存储在内存里的，所以可以使用。若没这么幸运的话就只能在提示的字符串 “点击一万次有flag” 处下断点">    <link href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/header.css" rel="stylesheet"><link href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/other.css" rel="stylesheet"><link href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/right.css" rel="stylesheet"><link href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/blog_details.css" rel="stylesheet"><link href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/highlight.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/vds.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/push.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/hm.js"></script><script>
+        var HOME_URL = 'https://home.51cto.com/';
+    </script>
+    <script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/jquery.min.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/cookie.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/login.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/common.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/mbox.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/follow.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/vip.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/window.js"></script><style></style><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/share.js"></script><link rel="stylesheet" href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/share_style0_16.css"></head><style type="text/css" id="45731521720"></style>
+<body>
+<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/share_default.jpg" border="0" style="width:0; height:0; position:absolute;">
+<style type="text/css">
+	.service-btn{
+		width: 53px;
+height: 36px;
+color: #1ac6fe;
+line-height: 16px;
+padding-top: 50px;
+		display: inline-block;
+		background: url(https://s1.51cto.com/images/blog/201811/02/463350acf4c693cfb3dc248bc8a2a0eb.png) no-repeat center;
+	}
+	.service-btn:hover{
+		background: url(https://s1.51cto.com/images/blog/201811/02/2d5fa2ff4eb9ef66847aff20ba4c8bae.png) no-repeat center;
+height: 36px;
+color: #fff;
+line-height: 16px;
+padding-top: 50px;
+	}
+</style>
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<div id="topbanner14" style="position: relative;width:100%;height:40px;background:url(https://s1.51cto.com/images/blog/201911/11/acdb3e5b64325b92f4f5ba0dab07d04e.jpg)">
+<a class="close fl" href="javascript:;" style="position:absolute;width:13px;height:13px;top:0px;z-index: 20;background: url(&#39;https://s1.51cto.com/images/blog/201808/23/0363c65f527ea7c9880ab5f275303d1a.png&#39;) 0 0 no-repeat;background-size: 100% 100%;left: 50%;margin-left: 587px;"></a>
+<a href="https://blog.51cto.com/51ctoblog/2448182" target="_blank">
+  <img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/98227ae80dfd0a3f5ed37f2bb04ef105.jpg" alt="" style="position:absolute;width:1200px;height:40px;margin-left: -600px;left:50%;z-index: 10;">
+</a>
+</div>
+<script>
+    $("#topbanner14").on("click",".close",function(){
+        $("#topbanner14").remove();
+    })
+</script>
+<div class="Header">
+  <div class="Page ">
+    <h1 class="Logo"><a href="https://blog.51cto.com/">Logo</a></h1>
+    <ul class="Navigates fl">
+      <li><a href="https://blog.51cto.com/">首页</a></li>
+      <li><a href="https://blog.51cto.com/original">文章</a></li>
+      <li><a href="https://blog.51cto.com/blog/follow">关注</a></li>
+      <li class="">
+        <a class="column-stress" href="https://blog.51cto.com/cloumn/index" target="_blank">订阅专栏</a>
+      </li>
+                <li class="" style="margin-left: 1px;padding-top: 2px;height: 58px;"><a class="" target="_blank" href="javascript:;"><img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/c632c37722e0d090d03884cfe619e7ac.png"></a></li>
+       <!-- <li class="newyear-li"><a class="newyear-logo" target="_blank" href=""><img src="https://s1.51cto.com/images/blog/201901/30/69c9e895dc76b94dbd594291a933b25a.png"/></a></li> -->
+                    
+                  </ul>
+    <ul class="Navigates Navigates-right fr">
+      <li class="more maps">
+        <a href="javascript:void(0);">网站导航</a>
+        <div>
+            <a href="https://edu.51cto.com/" target="_blank">学院</a>
+            <a href="https://e.51cto.com/" target="_blank">微职位</a>
+            <a href="https://blog.51cto.com/" target="_blank">博客</a>
+            <a href="http://down.51cto.com/" target="_blank">下载</a>
+            <a href="https://home.51cto.com/" target="_blank">家园</a>
+            <a href="http://bbs.51cto.com/" target="_blank">论坛</a>
+            <a href="http://x.51cto.com/" target="_blank">CTO训练营</a>
+            <!--a href=" http://club.51cto.com?blog" target="_blank">CTO俱乐部</a-->
+            <a href="http://wot.51cto.com/" target="_blank">WOT</a>
+            <a href="http://www.51cto.com/" target="_blank">51CTO</a>
+            <i class="arrow"></i>
+        </div>
+      </li>
+                <li><a href="https://blog.51cto.com/site/login?reback=https%3A%2F%2Fblog.51cto.com%2F13992485%2F2429569&amp;logintype=reg" target="_self">注册</a></li>
+          <li class="login"><a href="https://blog.51cto.com/site/login?reback=https%3A%2F%2Fblog.51cto.com%2F13992485%2F2429569" target="_self">登录</a></li>
+                        <li class="mRead">
+          <a href="javascript:;">手机阅读</a>
+          <div>
+            <img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/blog_qr.png">
+            <p>扫一扫体验手机阅读</p>
+            <i class="arrow"></i>
+          </div>
+        </li>
+            <li class="search"><a href="https://blog.51cto.com/search/index" target="_self">搜索</a></li>
+                  <li class="write"><a href="javascript:;" onclick="Login()">写文章</a></li>
+                  </ul>
+
+          <div class="clear"></div>
+  </div>
+</div>
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/box.js"></script> 
+<script>
+    var isLogin = '0';
+    var userId = '';
+    var imgpath = 'https://s1.51cto.com/';
+    var BLOG_URL = 'https://blog.51cto.com/';
+    var msg_num_url = '/index/ajax-msg-num';
+    $('.msg-follow, .msg-follow-max').eq(1).css({top: '91px'});
+    $('.msg-follow, .msg-follow-max').eq(2).css({top: '121px'});
+    setTimeout(function(){
+            $.ajax({
+                url:msg_num_url,
+                type:"get",
+                dataType:'json',
+                success:function(res){
+                    if(res.status == '0'){
+                       //
+                       var hasNewMsg = false;
+                       if(res.data.msgNum > 0 && !$('#myMsg i').hasClass('dot')){
+                            $('#myMsg i').addClass('dot');
+                            hasNewMsg = true;
+                       }
+                       if(res.data.notifyNum > 0 && !$('#myNotify i').hasClass('dot')){
+                           $('#myNotify i').addClass('dot');
+                           hasNewMsg = true;
+                       }
+                       if(res.data.recommend_new > 0 && !$('#myRecommend i').hasClass('dot')){
+                           $('#myRecommend i').addClass('dot');
+                           hasNewMsg = true;
+                       }
+                       if(hasNewMsg && !$('#myAllMsg i').hasClass('dot')){
+                           $('#myAllMsg i').addClass('dot');
+                       }
+                    }
+
+                }
+            });
+    },70);
+    //广告图
+$(function(){
+     new AutoAD({
+      ADD:$('<a href="https://blog.51cto.com/51ctoblog/2448182" class="closeMB" target="_blank" styel="display:block;"><img src="https://s1.51cto.com/images/blog/201911/11/8dbc5ff22492932dfabb28b82463695b.jpg"></a><a class="closeMB" style="position: absolute;right:2px;top: 3px;width: 50px;height: 40px;cursor: pointer;" href="javascript:;"></a>'),
+      W:500,
+      H:400,
+      cookie:'blog_activity_blog104',
+      mask:"#000",
+      ts:'21600',
+      noCBtn: true
+    }) 
+})    
+</script>
+ <script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/entrance.js" id="zhichiScript" class="zhiCustomBtn" data-args="manual=true"></script>
+<a href="javascript:;" class="zhiCustomBtn" style="position: fixed;z-index: 2147483583;width: 60px;height: 6px;text-align: center;bottom:275px;right:0px;">
+<span class="service-btn">在线<br>客服</span>
+</a>
+
+<script type="text/javascript">
+var zhiManager = (getzhiSDKInstance());
+zhiManager.on("load", function() {
+    zhiManager.initBtnDOM();
+});
+//zhiManager.set('title','垃圾/广告信息举报');
+zhiManager.set('powered',false);
+zhiManager.set('color', '4285f4');
+zhiManager.set('customBtn', 'true');
+zhiManager.set('moduleType',2);
+zhiManager.set('size',{'width':360,'height':500});
+
+zhiManager.set('userinfo', {partnerId:'',uname:'',params:'{"用户名":""}'});
+zhiManager.set('customMargin', 20);
+zhiManager.set('horizontal', 20);
+zhiManager.set('vertical', 90);
+zhiManager.set('preVisitArgs',{'preVisitUrl': document.referrer?document.referrer:''});
+zhiManager.set('curVisitArgs',{'curVisitUrl': location.href,curVisitTitle:document.title,});
+</script>
+<div class="Content-box" style="min-height: 844px;">
+      <link rel="stylesheet" href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/mdeShow.css">
+  <link rel="stylesheet" href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/prism.css">
+  <script type="text/javascript" charset="utf-8" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/prism.js"></script>
+<link rel="stylesheet" href="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/tinyscrollbar.css">
+<script type="text/javascript" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/jquery.tinyscrollbar.js"></script>
+<div class="Content Index" style="padding-bottom: 50px;">
+	<div class="Page M764">
+		<!-- left start -->
+		<div class="artical-Left-blog">
+			<div class="status">
+	        					<a class="tab_name original">原创</a>
+							</div>
+			<h1 class="artical-title">bugku 不好用的CE WriteUp</h1>
+			<div class="artical-title-list">
+				<div class="is-vip-bg-6 fl">
+					<a href="https://blog.51cto.com/13992485" class="a-img" target="_blank"><img class="is-vip-img is-vip-img-4" data-uid="13982485" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/noavatar_middle.gif"></a>
+				</div>
+				<a href="https://blog.51cto.com/13992485" class="name fl" target="_blank" style="margin-right:0;">Trut104</a>
+												<a class="comment comment-num fr"><font class="comment_number">0</font>人评论</a>
+				<span class="fr"></span>
+				<a href="javascript:;" class="read fr">633人阅读</a>
+				<a href="javascript:;" class="time fr">2019-08-14 18:32:39</a>
+				<div class="clear"></div>
+			</div>
+							<div class="artical-content-bak main-content editor-side-new">
+          <div class="con editor-preview-side" id="result"><h3>不好用的CE</h3><p><a href="https://s1.51cto.com/images/blog/201908/14/d4f58d0832a538281e22ee854437767e.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="208" title="clip_image002" alt="clip_image002" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/2d864d21c26283984ab929615a4fbf0e.jpg" style="cursor: pointer;"></a></p><p>这题有好多种解法，我会一个个解释。</p><p>只用OD</p><p>只用CE</p><p>CE+OD</p><p>下载文件</p><p><a href="https://s1.51cto.com/images/blog/201908/14/4331b56754f0ae05e928fe4975ef5205.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="178" height="192" title="clip_image004" alt="clip_image004" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/8b68f53d528c907a578a591daa8ed570.jpg" style="cursor: pointer;"></a></p><p><a href="https://s1.51cto.com/images/blog/201908/14/dece19f354d09edbd6dfa616a522f9f3.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image006" alt="clip_image006" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/09c8f5960dc2dd1bb8bb93dfa2171583.jpg" style="cursor: pointer;"></a></p><p>点两下试试</p><p><a href="https://s1.51cto.com/images/blog/201908/14/b4d57cb6820c9410e7814386f1512550.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image008" alt="clip_image008" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/d74cce706a21c3488c6b70fc87341e78.jpg" style="cursor: pointer;"></a></p><p>无壳</p><p><a href="https://s1.51cto.com/images/blog/201908/14/be11fe742e281dab5c28a3017c6b4ef4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="141" title="clip_image010" alt="clip_image010" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/670e219ed086c7788af32ddd3dfe7bfe.jpg" style="cursor: pointer;"></a></p><p>1.只用OD</p><p>只用OD我只想出两种办法，虽然只是下断点的方式不同，但也代表了不同的思路。</p><p>一、 第一种是最直接的也是最笨的，在搜索字符串里的所有内容都下断点，这里幸好搜索的字符串不是很多，而且flag凑巧是直接存储在内存里的，所以可以使用。若没这么幸运的话就只能在提示的字符串 “点击一万次有flag” 处下断点，一点点的往上翻代码了。</p><p><a href="https://s1.51cto.com/images/blog/201908/14/f9e6f4ef53fcb18fc88d5ad0e71e0b55.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="75" title="clip_image012" alt="clip_image012" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/b1a13eb89bcb00b7a838096cd33bb759.jpg" style="cursor: pointer;"></a></p><p>二、 我们知道了这个程序使用VB写的，且会弹出一个对话框，对话框在VB理常用的函数为rtcMsgBox，可以用ODB的插件来自动下断点，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/d93073c6cb8994d8d861cd8786acf8e9.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="219" title="clip_image014" alt="clip_image014" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/5e51d1308ea3a11d4fd59ae8d5dfea03.jpg" style="cursor: pointer;"></a></p><p>只用OD第一种办法：在每一处字符串下断点，这里我们就只在可疑字符串下断点了</p><p>即第3、4、5、6、7行</p><p><a href="https://s1.51cto.com/images/blog/201908/14/807d2fc7b6d198313fb83098d978f1c4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="75" title="clip_image012[1]" alt="clip_image012[1]" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/d1494697bc443b36cbf6fd876d32698f.jpg" style="cursor: pointer;"></a></p><p>首先断在了最后一条，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/bb13927466eea718a95b2659325a7a7f.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="194" title="clip_image016" alt="clip_image016" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/9f844430dca530f6436bfd479d58248a.jpg" style="cursor: pointer;"></a></p><p>看起来是在初始化变量，F9继续运行</p><p><a href="https://s1.51cto.com/images/blog/201908/14/9698dba6a7136b00dac59b2956322148.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="178" height="192" title="clip_image004[1]" alt="clip_image004[1]" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/cda90e3f18a5922fbb35a73d702267a2.jpg" style="cursor: pointer;"></a></p><p>跳出对话框，单击确定继续程序</p><p><a href="https://s1.51cto.com/images/blog/201908/14/84b98a334995ede2359a6e9d400289da.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image006[1]" alt="clip_image006[1]" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/8b43a373b48bf2c2844af13cb95d9727.jpg" style="cursor: pointer;"></a></p><p>点击后触发断点，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/b3d5f06c968cc2998b991cdf5f682141.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="110" title="clip_image018" alt="clip_image018" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/4fab3a47ca45484264a8dc76037eceaf.jpg" style="cursor: pointer;"></a></p><p><a href="https://s1.51cto.com/images/blog/201908/14/8d32e1faaea20119435c9cb90ffcb113.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="113" title="clip_image020" alt="clip_image020" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/33d2916b73a570c8718e187b163cf4f3.jpg" style="cursor: pointer;"></a></p><p>这三个可疑的字符串在一起，但是其上并没有大跳转，甚至根本没有跳转，那最后一个可疑字符串就更可疑了，继续F9运行程序，程序并没有断在最后一个字符串处，说明这个字符串很有可能就是达到条件(点击一万次)后才会出现的字符串，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/bb4ca413a4d2c81c5ff92c15be087172.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="111" title="clip_image022" alt="clip_image022" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/a50cfc17e2721f0e12a8b713977c69b1.jpg" style="cursor: pointer;"></a></p><p>这个字符串上面还有一个大跳转，那这个字符串就很有可能是flag了，或者flag相关的字符串，我们把这个大跳转nop掉，看看会出现什么</p><p><a href="https://s1.51cto.com/images/blog/201908/14/8c0f54d9b75e085c7af8d205b7f98521.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image024" alt="clip_image024" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/3b33b1017f8306edf9e408814e7358f8.jpg" style="cursor: pointer;"></a></p><p><strong>DeZmqMUhRcP8NgJgzLPdXa</strong></p><p>这题最坑的地方也就是这个字符串就出现了，之前做这个题也是断在这里，直到最近出了Writeup才知道，这个看起来像base64的字符串其实是他的远亲，base58</p><p>我们都知道base64的范围是 &nbsp;数字(10)+大小写字母(26*2=52)+两个特殊字符(+，/)</p><p>而base58是剔除了容易被人误识别的数字0，L的小写，i的大写和o的大写，还有两个特殊字符(+，/)</p><p><a href="https://s1.51cto.com/images/blog/201908/14/888d710cb9e3b620e71a182c4ce41845.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="229" height="244" title="clip_image026" alt="clip_image026" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/a582e6f23464802b2445e77cd357ffbe.jpg" style="cursor: pointer;"></a></p><p>得到flag</p><p>只用OD第二种方法，利用OD的插件，在rtcMsgBox下断点，F9运行程序，被断下</p><p><a href="https://s1.51cto.com/images/blog/201908/14/ff48ab96f020dfb2ffc5ad767b856a3b.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="174" title="clip_image028" alt="clip_image028" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/eb444069268d35e2cc6503d577e76b78.jpg" style="cursor: pointer;"></a></p><p>这个地方已经不属于程序的领空了，这里是VB调用的库的领空，在这个位置我们在栈里可以找到程序调用函数的地址，在其上回车以回到程序领空</p><p><a href="https://s1.51cto.com/images/blog/201908/14/3849e78d54b2b490e3b28555669efc6b.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="57" title="clip_image030" alt="clip_image030" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/b8860e52c7ed3d15951164037f777e2d.jpg" style="cursor: pointer;"></a></p><p><a href="https://s1.51cto.com/images/blog/201908/14/5d26b92fb39999a41af508c4205eb373.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="174" title="clip_image032" alt="clip_image032" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/d83b2e4296c1eddc531d4470f3f34775.jpg" style="cursor: pointer;"></a></p><p>然后我们就可以苦哈哈地慢慢往上翻代码了，这个下断点的方式适合在没有明确的提示字符串的时候使用，在有提示字符串的时候还是用字符串来查找比较方便。</p><p>CE+OD</p><p>打开程序，CE附加程序，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/be687a4c4963a7fc3f657e2c5c36c3ea.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="234" title="clip_image034" alt="clip_image034" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/e6fdf77d09161ff6ce10dbd1be529afe.jpg" style="cursor: pointer;"></a></p><p>这里我们不知道这个变化的数字的类型，虽然看起来很像整型</p><p><a href="https://s1.51cto.com/images/blog/201908/14/b87bd55495207d25eb7f21edb7a0ef6f.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image008[1]" alt="clip_image008[1]" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/37901096c6667df0e3b2975e6cc4e037.jpg" style="cursor: pointer;"></a></p><p>所以我们设置扫描类型为未知的初始值，点击首次扫描</p><p><a href="https://s1.51cto.com/images/blog/201908/14/d0cd556a7519ebd159404c904685cd1d.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="191" title="clip_image036" alt="clip_image036" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/c54d1492093a010d3fbdfa734d402a88.jpg" style="cursor: pointer;"></a></p><p>然后点击按钮，变化一下数值</p><p><a href="https://s1.51cto.com/images/blog/201908/14/a6dd0374ffa9ba558c0191c178fa06b4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image038" alt="clip_image038" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/f8c798905d3aa8a055ddb65301391c9a.jpg" style="cursor: pointer;"></a></p><p>再用CE搜索变化的数值</p><p><a href="https://s1.51cto.com/images/blog/201908/14/dc160c3f619282d17fa327c345127cc6.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="162" title="clip_image040" alt="clip_image040" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/b4d5de27ecd51aff2325428f86a2d30e.jpg" style="cursor: pointer;"></a></p><p>点击再次扫描</p><p><a href="https://s1.51cto.com/images/blog/201908/14/36be102aabe855614f239eadcd3006e1.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="160" title="clip_image042" alt="clip_image042" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/37617fdc77fb2d40e8ecf61ee078c701.jpg" style="cursor: pointer;"></a></p><p>这样太慢了，我们可以用变动的数值和未变动的数值切换来不断搜索</p><p>最后剩了八个结果实在分辨不出来了</p><p><a href="https://s1.51cto.com/images/blog/201908/14/4622bb7847b18afa8b7270f4944edf14.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="135" title="clip_image044" alt="clip_image044" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/8d90868d7ac5ccf1566972999d4ae22d.jpg" style="cursor: pointer;"></a></p><p>不过这就够了，我们也不需要知道那么细致，随便选一个，双击，拉到下面的界面里，右键他选择 &nbsp;找出是什么改写了这个地址</p><p><a href="https://s1.51cto.com/images/blog/201908/14/42a31f9d88592b3df25f280adbbf1a95.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="184" title="clip_image046" alt="clip_image046" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/a31bfe6520686c1b8d722888ec335497.jpg" style="cursor: pointer;"></a></p><p><a href="https://s1.51cto.com/images/blog/201908/14/5b424e2b24bc8f3f9aea89c1183e514d.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="209" title="clip_image048" alt="clip_image048" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/f6006326db64232d39cbba51d2701f1e.jpg" style="cursor: pointer;"></a></p><p>注意像这样的，地址特别大的，一定不是程序的代码，这个是程序调用的库的地址</p><p><a href="https://s1.51cto.com/images/blog/201908/14/7d15d13f886ca822a85fb766f07cb757.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="209" title="clip_image050" alt="clip_image050" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/1c935cbaa115f591a89d23d7bae086a2.jpg" style="cursor: pointer;"></a></p><p>像这样40打头的才是程序的代码，具体要看程序的PE头里定义的基地址，一般为400000。</p><p>然后我们就可以记住这个地址，用OD打开程序，到这个地址看看，CE也可以看，但是很多操作不方便</p><p><a href="https://s1.51cto.com/images/blog/201908/14/b71aeb5f25468f597d527607bb0bd1e4.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="152" title="clip_image052" alt="clip_image052" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/f2b843817952b74b83ea566d0a7614f0.jpg" style="cursor: pointer;"></a></p><p>毕竟不是专门用来调试程序的应用。</p><p>我们用OD附加到进程上，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/597a68d49724e95f57f1e339441aa4f7.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="128" title="clip_image054" alt="clip_image054" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/be2f94fed399923d574357146f724d18.jpg" style="cursor: pointer;"></a></p><p>ctrl+g 到401D44看看</p><p><a href="https://s1.51cto.com/images/blog/201908/14/df6661bc9fefa1bb1b9ff475ec2507f3.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="140" title="clip_image056" alt="clip_image056" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/f07f895d82ab09127f45a4493bdbbb50.jpg" style="cursor: pointer;"></a></p><p>距离我们第一次找到的关键跳转也很近，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/112faf283bd26444385293ddb778449b.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="114" title="clip_image058" alt="clip_image058" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/d112a62e9bfca630b8f4f0775827cd97.jpg" style="cursor: pointer;"></a></p><p>这之间有大量的棕色的浮点数运算，而关键跳转之后再无浮点运算，所以这可能就是算法部分，这次我们仔细分析下算法部分，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/c1d833d3852f03c971fe586dc29d691f.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="70" title="clip_image060" alt="clip_image060" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/aeb80b895f6dc6de66b010852c7f54a5.jpg" style="cursor: pointer;"></a></p><p>这里可以说是算法部分最重要的四条代码了，从0x4010A8存储的10000就能看出来，在我解释浮点助记符之前，我要先解释一下浮点运算：</p><p>在包含浮点运算的处理器里，有8个寄存器，分别是ST0-ST7，他们通过浮点助记符来进行浮点运算，他们的使用方法与栈很类似，存储的顺序从ST0开始到ST7，常用的浮点助记符有：</p><blockquote><p>fld 相当于push</p></blockquote><blockquote><p>fstp 相当于pop</p></blockquote><blockquote><p>fadd 相当于add</p></blockquote><blockquote><p>fsub 相当于sub</p></blockquote><blockquote><p>fdiv 相当于div</p></blockquote><blockquote><p>fmul 相当于mul</p></blockquote><blockquote><p>fstsw 把状态寄存器存入寄存器里</p></blockquote><blockquote><p>fcomp 相当于cmp</p></blockquote><p>再具体点的用法我会在用的时候解释，现在在最开始的浮点运算处下断点</p><p><a href="https://s1.51cto.com/images/blog/201908/14/1eb8c469a4d73c943021432ec00b3d07.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="128" title="clip_image062" alt="clip_image062" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/a4891eb9d8cc71b8f91511537b628a68.jpg" style="cursor: pointer;"></a></p><p>因为代码跨度有点大，我就不一一截图了，只把关键代码写下来</p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]</strong></p></blockquote><p>把从[esi+0x34]存入ST0</p><blockquote><p><strong>fadd qword ptr ds:[0x4010B0]</strong></p></blockquote><p>0x4010B0是200.0，即ST0+=200.0</p><blockquote><p><strong>fstp qword ptr ds:[esi+0x34]</strong></p></blockquote><p>即[esi+0x34] = ST0</p><blockquote><p><strong>fstsw ax</strong></p></blockquote><p>把状态寄存器存入ax，周围并没有可以影响到状态寄存器的代码，所以忽略就行</p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]</strong></p></blockquote><p>即ST0=[esi+0x34]</p><p><strong>fdiv qword ptr ds:[0x4010B0]</strong></p><p>即ST0/=200.0</p><blockquote><p><strong>fstp qword ptr ss:[esp]</strong></p></blockquote><p>即[esp]=ST0，这里存储的就是实际的点击数了</p><blockquote><p><strong>fclex</strong></p></blockquote><p>查了一下是叫做浮点检查错误清除，不会影响结果所以忽略</p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]</strong></p></blockquote><p>即ST0=[esi+0x34]，</p><blockquote><p><strong>fdiv qword ptr ds:[0x4010B0]</strong></p></blockquote><p>即ST0/=200.0</p><blockquote><p><strong>fcomp qword ptr ds:[0x4010A8]</strong></p></blockquote><p>即ST0与10000比较</p><blockquote><p><strong>fstsw ax</strong></p></blockquote><p>把状态寄存器存入ax</p><blockquote><p><strong>test ah,0x40</strong></p></blockquote><p>比对状态寄存器，</p><blockquote><p><strong>je 401e97</strong></p></blockquote><p>关键跳转</p><p>然后怎么改就看个人喜欢了，可以像上次一样直接nop掉关键跳转，也可以修改0x4010B0里的值来达到点一次等于数次的效果，也可以直接修改0x4010A8里的值，让一万次变成1次。flag处理部分不再赘述。</p><p>后来我查了一下，test ah,0x40 比对的是状态寄存器的cf寄存器，即进位寄存器，所以他只会在从9999进位到10000时触发，</p><p>只用CE：</p><p>运行程序，用CE附加上</p><p>由于我们已经知道了数值的类型为双浮点(双浮点数占八个字节，有效数字16位，之前的200.0可以数一下有效数字就知道了，即使不知道类型为双浮点也可以一个个试，通常数据存储类型只有4字节，单浮点，双浮点类型，偶尔也有单字节的布尔类型)，我们设置扫描类型为未知的初始值，数值类型为双浮点搜索，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/5f8a1b828e5c4afd61e3f22fa8b7519b.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="160" title="clip_image064" alt="clip_image064" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/562968f76a78144bdf4649b6e1da9510.jpg" style="cursor: pointer;"></a></p><p>然后用 变动的数值/未变动的数值切换搜索，很快就搜索到了一个很扎眼的数值，除了这个2200都是后面跟了很多个小数的双浮点数，然后用2200/11得到增量200，</p><p><a href="https://s1.51cto.com/images/blog/201908/14/90462b1a832cb52c7162b215b6c454cf.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="176" title="clip_image066" alt="clip_image066" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/87c195942f018cbe7e1e638d19998019.jpg" style="cursor: pointer;"></a></p><p>双击把他加入下面的界面，设置大小为1999800</p><p><a href="https://s1.51cto.com/images/blog/201908/14/b60b70fbb3ad75e93bd067554b711d12.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="61" title="clip_image068" alt="clip_image068" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/f03fcb29ce1aaa236a3ceb70245cb504.jpg" style="cursor: pointer;"></a></p><p><a href="https://s1.51cto.com/images/blog/201908/14/6a525622607183fb1780796e5d7303df.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="71" title="clip_image070" alt="clip_image070" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/42ff2814f5d126fe6263c291cc230168.jpg" style="cursor: pointer;"></a></p><p>然后点击程序的按钮</p><p><a href="https://s1.51cto.com/images/blog/201908/14/e3ebdd35c02c9c64e538ba9c2877d3ab.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="187" title="clip_image072" alt="clip_image072" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/de49ac5df431a911688e1c08b031cd17.jpg" style="cursor: pointer;"></a></p><p>就从11变成了100000，从而得到flag</p><p>当然，如果我们知道了增量为200，也可以直接搜索200*X</p><p><a href="https://s1.51cto.com/images/blog/201908/14/07c66b1f86ef49b72f0227895fe36bbd.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=" style="color: rgb(66, 133, 244);"><img width="244" height="157" title="clip_image074" alt="clip_image074" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/0a87904f43bf5944e7a6737f450779c6.jpg" style="cursor: pointer;"></a></p></div>
+				</div>
+													<div class="artical-copyright mt26">©著作权归作者所有：来自51CTO博客作者Trut104的原创作品，如需转载，请注明出处，否则将追究法律责任</div>
+									<div class="for-tag mt26">
+																						<a href="https://blog.51cto.com/search/result?q=%E7%BD%91%E7%BB%9C%2F%E5%AE%89%E5%85%A8" target="_blank">网络/安全</a>
+																								<a href="https://blog.51cto.com/search/result?q=%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF" target="_blank">安全技术</a>
+															                				<div class="clear"></div>
+			</div>
+			<div class="more-list">
+				<p class="is-praise fl "><span type="1" blog_id="2429569" userid="13982485">1</span></p>
+				<div class="share-box fr">
+					<p class="share"><i></i>分享</p>
+					<div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1573693658979">
+					  <span></span>
+					  <a class="bds_tsina" data-cmd="tsina">微博</a>
+					  <a class="bds_sqq" data-cmd="sqq">QQ</a>
+					  <a class="bds_weixin" data-cmd="weixin">微信</a>
+					  <img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/qr-url">
+					</div>
+				</div>
+				<p class="favorites favorites-opt fr"><i></i>收藏</p>
+								<div class="clear"></div>
+			</div>
+							<div class="artical-list">
+	            					<a class="fl" href="https://blog.51cto.com/13992485/2420111" title="Write up PHP_encrypt_1_Bugku">
+						上一篇：Write up PHP_enc...</a>
+	            	            					<a class="fr" href="https://blog.51cto.com/13992485/2434946" title="Bugku 加密 python  writeup">
+						下一篇：Bugku 加密 python ...</a>
+	            					<div class="clear"></div>
+				</div>
+						<div class="author-module">
+				<div class="is-vip-bg-6 fl">
+					<a href="https://blog.51cto.com/13992485" class="a-img" target="_blank">
+						<img class="is-vip-img is-vip-img-4" data-uid="13982485" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/noavatar_middle.gif">
+					</a>
+				</div>
+				<div class="author-module-center fl">
+					<a class="h2" href="https://blog.51cto.com/13992485" target="_blank" style="display:inline-block;">Trut104</a>
+										<h3>5篇文章，4538人气，0粉丝</h3>
+									</div>
+								<div class="clear"></div>
+			</div>
+		</div>
+		<div class="artical-Left" id="comment">
+			<!-- 发布评论 -->
+			<div class="comment-creat">
+				<div class="is-vip-bg-6 fl">
+					<a href="https://blog.51cto.com/13992485" class="header-img" target="_blank">
+						<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/noavatar_middle.gif">
+					</a>
+				</div>
+				<div class="first-publish fr publish_user_id">
+					<textarea class="textareadiv textareadiv-publish" name="" id="" placeholder="提问和评论都可以，用心的回复会被更多人看到和认可" maxlength="500"></textarea>
+					<div class="comment-push">
+						<p class="msg fl">Ctrl+Enter&nbsp;发布</p>
+													<p class="publish-btn blue-btn fr" flag="1">发布</p>
+												<p class="cancel-btn cancel-btn-1 fr">取消</p>
+						<div class="clear"></div>
+					</div>
+					<input type="hidden" class="user_id" value="13982485">
+					<input type="hidden" class="reply_id" value="2429569">
+					<input type="hidden" class="first_pid" value="">
+				</div>
+				<div class="clear"></div>
+			</div>
+						<div class="commentList"></div>
+			<!-- page -->
+			<div class="act_pageList_box"></div>
+		</div>
+		<!-- end left -->
+		<!-- right start -->
+		<div class="Blog-Right artical-Right">
+			<a class="catalog" style="display: none;"></a>
+			<a class="scrollTop" href="javascript:void(0);" onclick="$(window).scrollTop(0);" style="display: block;"></a>
+		</div>
+		<!-- end right  -->
+	</div>
+			<div class="special-column">
+			<div class="Page M764">
+									<div class="column-1">
+						<h2 class="column-tit">推荐专栏<a href="https://blog.51cto.com/cloumn/index?utm_source=p" target="_blank"><span class="recommend-more-span" style="">更多</span></a></h2>
+													<div class="column-box">
+								<a href="https://blog.51cto.com/cloumn/detail/15" class="a-img fl cloumn-tab-par" target="_blank">
+									<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/2810ca683899f6932ce0424b536b8992.png">
+                													</a>
+								<div class="center fl">
+									<a class="h2 white-space left-list" href="https://blog.51cto.com/cloumn/detail/15" target="_blank"> Web网站安全评估分析及防御</a>
+									<h3 class="white-space">企业级网安运维</h3>
+									<h4 class="white-space">共30章&nbsp;|&nbsp;<a href="https://blog.51cto.com/simeon" target="_blank">simeon2005</a></h4>
+									<h5><span class="price">
+                                    ￥51.00
+                                    </span><span>440人订阅</span></h5>
+								</div>
+								<div class="right fr">
+							        																							<a class="cloumn-subscribe left-list" cid="15" href="https://blog.51cto.com/cloumn/detail/15" ask="1" target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
+																			    								</div>
+								<div class="clear"></div>
+							</div>
+													<div class="column-box">
+								<a href="https://blog.51cto.com/cloumn/detail/3" class="a-img fl cloumn-tab-par" target="_blank">
+									<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/602d0cf94f108fd7ace3225fbc0b0be0.png">
+                													</a>
+								<div class="center fl">
+									<a class="h2 white-space left-list" href="https://blog.51cto.com/cloumn/detail/3" target="_blank"> 网络安全入门到实战，让SQLmap子弹飞一会儿</a>
+									<h3 class="white-space">9本网络安全实战书籍精华</h3>
+									<h4 class="white-space">共23章&nbsp;|&nbsp;<a href="https://blog.51cto.com/simeon" target="_blank">simeon2005</a></h4>
+									<h5><span class="price">
+                                    ￥51.00
+                                    </span><span>842人订阅</span></h5>
+								</div>
+								<div class="right fr">
+							        																							<a class="cloumn-subscribe left-list" cid="3" href="https://blog.51cto.com/cloumn/detail/3" ask="1" target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
+																			    								</div>
+								<div class="clear"></div>
+							</div>
+													<div class="column-box">
+								<a href="https://blog.51cto.com/cloumn/detail/6" class="a-img fl cloumn-tab-par" target="_blank">
+									<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/629650e188ddde78b213e564c2e9ebff.jpg">
+                													</a>
+								<div class="center fl">
+									<a class="h2 white-space left-list" href="https://blog.51cto.com/cloumn/detail/6" target="_blank"> 负载均衡高手炼成记</a>
+									<h3 class="white-space">高并发架构之路</h3>
+									<h4 class="white-space">共15章&nbsp;|&nbsp;<a href="https://blog.51cto.com/sery" target="_blank">sery</a></h4>
+									<h5><span class="price">
+                                    ￥51.00
+                                    </span><span>545人订阅</span></h5>
+								</div>
+								<div class="right fr">
+							        																							<a class="cloumn-subscribe left-list" cid="6" href="https://blog.51cto.com/cloumn/detail/6" ask="1" target="_blank">订&nbsp;&nbsp;&nbsp;阅</a>
+																			    								</div>
+								<div class="clear"></div>
+							</div>
+											</div>
+													<div class="column-2" style="margin-top: 76px;">
+						<h2 class="column-tit">猜你喜欢</h2>
+						<div class="column-box">
+															<a class="white-space" href="https://blog.51cto.com/13992485/2434946?source=dra" target="_blank">Bugku 加密 python  writeup</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/13992485/2420111?source=dra" target="_blank">Write up PHP_encrypt_1_Bugku</a>
+															<a class="white-space" href="https://blog.51cto.com/windows2008/74285?source=drt" target="_blank">解决电脑网络受限制或无连接造成无法上网的方法</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/simonhu/1588971?source=drt" target="_blank">CentOS 7 网络配置详解</a>
+															<a class="white-space" href="https://blog.51cto.com/369369/805726?source=drt" target="_blank">Linux下网络流量实时监控工具大全</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/lookingdream/2093101?source=drt" target="_blank">技术干货|深入理解flannel</a>
+															<a class="white-space" href="https://blog.51cto.com/52android/496621?source=drt" target="_blank">Android网络编程之Http通信</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/eeproxy/1747073?source=drt" target="_blank">影梭shadowsocks使用教程,windows电脑+谷歌浏览器实现网络代理</a>
+															<a class="white-space" href="https://blog.51cto.com/ganbing/2087598?source=drt" target="_blank">“深入浅出”来解读Docker网络核心原理</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/andygao/817518?source=drt" target="_blank">Vmware vSphere 5.0系列教程之四  vSphere网络原理及vSwitch简介</a>
+															<a class="white-space" href="https://blog.51cto.com/gloomyfish/2105427?source=drt" target="_blank">VGG卷积神经网络模型解析</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/zero01/2074284?source=drt" target="_blank">容器技术概述</a>
+															<a class="white-space" href="https://blog.51cto.com/14157628/2448450?source=drh" target="_blank">Cisco路由器实现远程访问虚拟专用网——Easy虚拟专用网（解决出差员工访问内网的问题）</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/14227204/2448319?source=drh" target="_blank">Cisco路由器之IPSec 虚拟专用网（内附配置案例）</a>
+															<a class="white-space" href="https://blog.51cto.com/14309999/2448178?source=drh" target="_blank">Nmap脚本引擎NSE</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/14157628/2447844?source=drh" target="_blank">Cisco ASA防火墙实现IPSec 虚拟专用网，可跟做！！！</a>
+															<a class="white-space" href="https://blog.51cto.com/14309999/2446359?source=drh" target="_blank">Nmap网络安全审计</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/14157628/2443851?source=drh" target="_blank">华为设备二层交换技术——MSTP协议详解</a>
+															<a class="white-space" href="https://blog.51cto.com/14154700/2429736?source=drh" target="_blank">Cisco路由器之IPSec  虚拟专用网（包括相关知识点以及配置实例）</a>
+															<a class="white-space left-list" href="https://blog.51cto.com/superwolf/2406417?source=drh" target="_blank">Kali Linux安装dvwa本地shentou测试环境</a>
+														<div class="clear"></div>
+						</div>
+					</div>
+							</div>
+		</div>
+		<div class="group_img_box">
+		<div class="group_git_box">
+                	 <img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/e44823f12c0ccbfd99decb605b02ec10.png" style="width:50px;height:50px;"> 	
+			<!--<img src="https://s1.51cto.com/images/blog/201810/22/078772c84eb23213ea90f577d9316ce4.png"/>-->
+        		</div>
+			<div class="group_code_box" style="display: none;">
+			<img src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/left-qr.jpg" width="130" height="130">
+			<p>扫一扫,领取大礼包</p>
+		</div>
+	</div>		
+	<div class="the-lowest-bg" style="display: none;">
+		<div class="the-lowest Page M764">
+			<p class="is-praise fl "><span type="1" blog_id="2429569" userid="13982485">1</span></p>
+			<p class="b-favorites favorites-opt fl"><i></i><b>0</b></p>
+			<a class="b-reply fl"><i></i><font class="comment_number"></font></a>
+			<div class="b-share fl">
+				<i></i>分享
+				<div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1573693658979">
+				  <a class="bds_tsina p2" data-cmd="tsina"></a>
+				  <a class="bds_sqq p3" data-cmd="sqq"></a>
+				  <a class="bds_weixin p1" data-cmd="weixin"><em class="code-icon"></em><img class="code-img" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/qr-url"></a>
+				</div>
+			</div>
+      						<a href="https://blog.51cto.com/13992485" class="b-name fr">Trut104</a>
+			<div class="is-vip-bg-6 fr">
+				<a href="https://blog.51cto.com/13992485" class="b-img"><img class="is-vip-img is-vip-img-4" data-uid="13982485" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/noavatar_middle.gif"></a>
+			</div>
+			<div class="clear"></div>
+
+		</div>
+	</div>
+</div>
+<!-- 老博文美观处理 -->
+	<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/shCores.js"></script>
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/countDown.js"></script>
+<script>
+	var praise_url = 'https://blog.51cto.com/praise/praise'
+    	addReply_url = 'https://blog.51cto.com/comments/add'
+    	removeUrl = 'https://blog.51cto.com/comments/del'
+    	blog_id = '2429569'
+    	pv_log_info = {
+            'pv_type':'blog',
+            'user_id':'13982485',
+            'blog_id':'2429569'
+        };
+    	rid = '0'
+    	is_comment = '0'
+    	comment_list = '/blog/ajax-comment-list'
+    	comment_sort = "asc"
+    	index_url = 'https://blog.51cto.com/13992485';
+    	uc_url = 'https://ucenter.51cto.com/'
+    	blog_url = 'https://blog.51cto.com/'
+    	img_url = 'https://static1.51cto.com/edu/blog/'
+    	i_user_id = ''
+    	c_user_id ='13982485'
+    	collect_url = 'https://blog.51cto.com/collect/add'
+    	is_old = '1'
+    	nicknameurl = 'https://blog.51cto.com/13992485'
+    	nickname = 'Trut104'
+    	myself = window.location.href;
+	$('.you-like-list li:odd').css({'margin-left': '10%'});
+	$('.column-box a:odd').addClass('left-list')
+	$('.myUrl').text(myself).click(function(){window.open(myself)})
+	setTimeout(function(){$('.Footer').css({'margin-top':'-50px'})},50)
+        	if(is_old==1){
+    // SyntaxHighlighter.all();
+    insertCodeElement("<h3>\u4e0d\u597d\u7528\u7684CE<\/h3><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d4f58d0832a538281e22ee854437767e.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"208\" title=\"clip_image002\" alt=\"clip_image002\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/2d864d21c26283984ab929615a4fbf0e.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u9898\u6709\u597d\u591a\u79cd\u89e3\u6cd5\uff0c\u6211\u4f1a\u4e00\u4e2a\u4e2a\u89e3\u91ca\u3002<\/p><p>\u53ea\u7528OD<\/p><p>\u53ea\u7528CE<\/p><p>CE+OD<\/p><p>\u4e0b\u8f7d\u6587\u4ef6<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/4331b56754f0ae05e928fe4975ef5205.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"178\" height=\"192\" title=\"clip_image004\" alt=\"clip_image004\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/8b68f53d528c907a578a591daa8ed570.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/dece19f354d09edbd6dfa616a522f9f3.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image006\" alt=\"clip_image006\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/09c8f5960dc2dd1bb8bb93dfa2171583.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u70b9\u4e24\u4e0b\u8bd5\u8bd5<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b4d57cb6820c9410e7814386f1512550.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image008\" alt=\"clip_image008\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d74cce706a21c3488c6b70fc87341e78.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u65e0\u58f3<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/be11fe742e281dab5c28a3017c6b4ef4.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"141\" title=\"clip_image010\" alt=\"clip_image010\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/670e219ed086c7788af32ddd3dfe7bfe.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>1.\u53ea\u7528OD<\/p><p>\u53ea\u7528OD\u6211\u53ea\u60f3\u51fa\u4e24\u79cd\u529e\u6cd5\uff0c\u867d\u7136\u53ea\u662f\u4e0b\u65ad\u70b9\u7684\u65b9\u5f0f\u4e0d\u540c\uff0c\u4f46\u4e5f\u4ee3\u8868\u4e86\u4e0d\u540c\u7684\u601d\u8def\u3002<\/p><p>\u4e00\u3001 \u7b2c\u4e00\u79cd\u662f\u6700\u76f4\u63a5\u7684\u4e5f\u662f\u6700\u7b28\u7684\uff0c\u5728\u641c\u7d22\u5b57\u7b26\u4e32\u91cc\u7684\u6240\u6709\u5185\u5bb9\u90fd\u4e0b\u65ad\u70b9\uff0c\u8fd9\u91cc\u5e78\u597d\u641c\u7d22\u7684\u5b57\u7b26\u4e32\u4e0d\u662f\u5f88\u591a\uff0c\u800c\u4e14flag\u51d1\u5de7\u662f\u76f4\u63a5\u5b58\u50a8\u5728\u5185\u5b58\u91cc\u7684\uff0c\u6240\u4ee5\u53ef\u4ee5\u4f7f\u7528\u3002\u82e5\u6ca1\u8fd9\u4e48\u5e78\u8fd0\u7684\u8bdd\u5c31\u53ea\u80fd\u5728\u63d0\u793a\u7684\u5b57\u7b26\u4e32 \u201c\u70b9\u51fb\u4e00\u4e07\u6b21\u6709flag\u201d \u5904\u4e0b\u65ad\u70b9\uff0c\u4e00\u70b9\u70b9\u7684\u5f80\u4e0a\u7ffb\u4ee3\u7801\u4e86\u3002<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f9e6f4ef53fcb18fc88d5ad0e71e0b55.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"75\" title=\"clip_image012\" alt=\"clip_image012\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b1a13eb89bcb00b7a838096cd33bb759.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u4e8c\u3001 \u6211\u4eec\u77e5\u9053\u4e86\u8fd9\u4e2a\u7a0b\u5e8f\u4f7f\u7528VB\u5199\u7684\uff0c\u4e14\u4f1a\u5f39\u51fa\u4e00\u4e2a\u5bf9\u8bdd\u6846\uff0c\u5bf9\u8bdd\u6846\u5728VB\u7406\u5e38\u7528\u7684\u51fd\u6570\u4e3artcMsgBox\uff0c\u53ef\u4ee5\u7528ODB\u7684\u63d2\u4ef6\u6765\u81ea\u52a8\u4e0b\u65ad\u70b9\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d93073c6cb8994d8d861cd8786acf8e9.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"219\" title=\"clip_image014\" alt=\"clip_image014\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/5e51d1308ea3a11d4fd59ae8d5dfea03.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u53ea\u7528OD\u7b2c\u4e00\u79cd\u529e\u6cd5\uff1a\u5728\u6bcf\u4e00\u5904\u5b57\u7b26\u4e32\u4e0b\u65ad\u70b9\uff0c\u8fd9\u91cc\u6211\u4eec\u5c31\u53ea\u5728\u53ef\u7591\u5b57\u7b26\u4e32\u4e0b\u65ad\u70b9\u4e86<\/p><p>\u5373\u7b2c3\u30014\u30015\u30016\u30017\u884c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/807d2fc7b6d198313fb83098d978f1c4.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"75\" title=\"clip_image012[1]\" alt=\"clip_image012[1]\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d1494697bc443b36cbf6fd876d32698f.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u9996\u5148\u65ad\u5728\u4e86\u6700\u540e\u4e00\u6761\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/bb13927466eea718a95b2659325a7a7f.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"194\" title=\"clip_image016\" alt=\"clip_image016\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/9f844430dca530f6436bfd479d58248a.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u770b\u8d77\u6765\u662f\u5728\u521d\u59cb\u5316\u53d8\u91cf\uff0cF9\u7ee7\u7eed\u8fd0\u884c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/9698dba6a7136b00dac59b2956322148.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"178\" height=\"192\" title=\"clip_image004[1]\" alt=\"clip_image004[1]\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/cda90e3f18a5922fbb35a73d702267a2.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8df3\u51fa\u5bf9\u8bdd\u6846\uff0c\u5355\u51fb\u786e\u5b9a\u7ee7\u7eed\u7a0b\u5e8f<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/84b98a334995ede2359a6e9d400289da.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image006[1]\" alt=\"clip_image006[1]\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/8b43a373b48bf2c2844af13cb95d9727.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u70b9\u51fb\u540e\u89e6\u53d1\u65ad\u70b9\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b3d5f06c968cc2998b991cdf5f682141.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"110\" title=\"clip_image018\" alt=\"clip_image018\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/4fab3a47ca45484264a8dc76037eceaf.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/8d32e1faaea20119435c9cb90ffcb113.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"113\" title=\"clip_image020\" alt=\"clip_image020\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/33d2916b73a570c8718e187b163cf4f3.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u4e09\u4e2a\u53ef\u7591\u7684\u5b57\u7b26\u4e32\u5728\u4e00\u8d77\uff0c\u4f46\u662f\u5176\u4e0a\u5e76\u6ca1\u6709\u5927\u8df3\u8f6c\uff0c\u751a\u81f3\u6839\u672c\u6ca1\u6709\u8df3\u8f6c\uff0c\u90a3\u6700\u540e\u4e00\u4e2a\u53ef\u7591\u5b57\u7b26\u4e32\u5c31\u66f4\u53ef\u7591\u4e86\uff0c\u7ee7\u7eedF9\u8fd0\u884c\u7a0b\u5e8f\uff0c\u7a0b\u5e8f\u5e76\u6ca1\u6709\u65ad\u5728\u6700\u540e\u4e00\u4e2a\u5b57\u7b26\u4e32\u5904\uff0c\u8bf4\u660e\u8fd9\u4e2a\u5b57\u7b26\u4e32\u5f88\u6709\u53ef\u80fd\u5c31\u662f\u8fbe\u5230\u6761\u4ef6(\u70b9\u51fb\u4e00\u4e07\u6b21)\u540e\u624d\u4f1a\u51fa\u73b0\u7684\u5b57\u7b26\u4e32\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/bb4ca413a4d2c81c5ff92c15be087172.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"111\" title=\"clip_image022\" alt=\"clip_image022\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/a50cfc17e2721f0e12a8b713977c69b1.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u4e2a\u5b57\u7b26\u4e32\u4e0a\u9762\u8fd8\u6709\u4e00\u4e2a\u5927\u8df3\u8f6c\uff0c\u90a3\u8fd9\u4e2a\u5b57\u7b26\u4e32\u5c31\u5f88\u6709\u53ef\u80fd\u662fflag\u4e86\uff0c\u6216\u8005flag\u76f8\u5173\u7684\u5b57\u7b26\u4e32\uff0c\u6211\u4eec\u628a\u8fd9\u4e2a\u5927\u8df3\u8f6cnop\u6389\uff0c\u770b\u770b\u4f1a\u51fa\u73b0\u4ec0\u4e48<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/8c0f54d9b75e085c7af8d205b7f98521.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image024\" alt=\"clip_image024\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/3b33b1017f8306edf9e408814e7358f8.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><strong>DeZmqMUhRcP8NgJgzLPdXa<\/strong><\/p><p>\u8fd9\u9898\u6700\u5751\u7684\u5730\u65b9\u4e5f\u5c31\u662f\u8fd9\u4e2a\u5b57\u7b26\u4e32\u5c31\u51fa\u73b0\u4e86\uff0c\u4e4b\u524d\u505a\u8fd9\u4e2a\u9898\u4e5f\u662f\u65ad\u5728\u8fd9\u91cc\uff0c\u76f4\u5230\u6700\u8fd1\u51fa\u4e86Writeup\u624d\u77e5\u9053\uff0c\u8fd9\u4e2a\u770b\u8d77\u6765\u50cfbase64\u7684\u5b57\u7b26\u4e32\u5176\u5b9e\u662f\u4ed6\u7684\u8fdc\u4eb2\uff0cbase58<\/p><p>\u6211\u4eec\u90fd\u77e5\u9053base64\u7684\u8303\u56f4\u662f \u00a0\u6570\u5b57(10)+\u5927\u5c0f\u5199\u5b57\u6bcd(26*2=52)+\u4e24\u4e2a\u7279\u6b8a\u5b57\u7b26(+\uff0c\/)<\/p><p>\u800cbase58\u662f\u5254\u9664\u4e86\u5bb9\u6613\u88ab\u4eba\u8bef\u8bc6\u522b\u7684\u6570\u5b570\uff0cL\u7684\u5c0f\u5199\uff0ci\u7684\u5927\u5199\u548co\u7684\u5927\u5199\uff0c\u8fd8\u6709\u4e24\u4e2a\u7279\u6b8a\u5b57\u7b26(+\uff0c\/)<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/888d710cb9e3b620e71a182c4ce41845.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"229\" height=\"244\" title=\"clip_image026\" alt=\"clip_image026\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/a582e6f23464802b2445e77cd357ffbe.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u5f97\u5230flag<\/p><p>\u53ea\u7528OD\u7b2c\u4e8c\u79cd\u65b9\u6cd5\uff0c\u5229\u7528OD\u7684\u63d2\u4ef6\uff0c\u5728rtcMsgBox\u4e0b\u65ad\u70b9\uff0cF9\u8fd0\u884c\u7a0b\u5e8f\uff0c\u88ab\u65ad\u4e0b<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/ff48ab96f020dfb2ffc5ad767b856a3b.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"174\" title=\"clip_image028\" alt=\"clip_image028\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/eb444069268d35e2cc6503d577e76b78.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u4e2a\u5730\u65b9\u5df2\u7ecf\u4e0d\u5c5e\u4e8e\u7a0b\u5e8f\u7684\u9886\u7a7a\u4e86\uff0c\u8fd9\u91cc\u662fVB\u8c03\u7528\u7684\u5e93\u7684\u9886\u7a7a\uff0c\u5728\u8fd9\u4e2a\u4f4d\u7f6e\u6211\u4eec\u5728\u6808\u91cc\u53ef\u4ee5\u627e\u5230\u7a0b\u5e8f\u8c03\u7528\u51fd\u6570\u7684\u5730\u5740\uff0c\u5728\u5176\u4e0a\u56de\u8f66\u4ee5\u56de\u5230\u7a0b\u5e8f\u9886\u7a7a<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/3849e78d54b2b490e3b28555669efc6b.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"57\" title=\"clip_image030\" alt=\"clip_image030\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b8860e52c7ed3d15951164037f777e2d.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/5d26b92fb39999a41af508c4205eb373.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"174\" title=\"clip_image032\" alt=\"clip_image032\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d83b2e4296c1eddc531d4470f3f34775.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u7136\u540e\u6211\u4eec\u5c31\u53ef\u4ee5\u82e6\u54c8\u54c8\u5730\u6162\u6162\u5f80\u4e0a\u7ffb\u4ee3\u7801\u4e86\uff0c\u8fd9\u4e2a\u4e0b\u65ad\u70b9\u7684\u65b9\u5f0f\u9002\u5408\u5728\u6ca1\u6709\u660e\u786e\u7684\u63d0\u793a\u5b57\u7b26\u4e32\u7684\u65f6\u5019\u4f7f\u7528\uff0c\u5728\u6709\u63d0\u793a\u5b57\u7b26\u4e32\u7684\u65f6\u5019\u8fd8\u662f\u7528\u5b57\u7b26\u4e32\u6765\u67e5\u627e\u6bd4\u8f83\u65b9\u4fbf\u3002<\/p><p>CE+OD<\/p><p>\u6253\u5f00\u7a0b\u5e8f\uff0cCE\u9644\u52a0\u7a0b\u5e8f\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/be687a4c4963a7fc3f657e2c5c36c3ea.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"234\" title=\"clip_image034\" alt=\"clip_image034\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/e6fdf77d09161ff6ce10dbd1be529afe.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u91cc\u6211\u4eec\u4e0d\u77e5\u9053\u8fd9\u4e2a\u53d8\u5316\u7684\u6570\u5b57\u7684\u7c7b\u578b\uff0c\u867d\u7136\u770b\u8d77\u6765\u5f88\u50cf\u6574\u578b<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b87bd55495207d25eb7f21edb7a0ef6f.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image008[1]\" alt=\"clip_image008[1]\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/37901096c6667df0e3b2975e6cc4e037.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u6240\u4ee5\u6211\u4eec\u8bbe\u7f6e\u626b\u63cf\u7c7b\u578b\u4e3a\u672a\u77e5\u7684\u521d\u59cb\u503c\uff0c\u70b9\u51fb\u9996\u6b21\u626b\u63cf<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d0cd556a7519ebd159404c904685cd1d.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"191\" title=\"clip_image036\" alt=\"clip_image036\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/c54d1492093a010d3fbdfa734d402a88.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u7136\u540e\u70b9\u51fb\u6309\u94ae\uff0c\u53d8\u5316\u4e00\u4e0b\u6570\u503c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/a6dd0374ffa9ba558c0191c178fa06b4.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image038\" alt=\"clip_image038\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f8c798905d3aa8a055ddb65301391c9a.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u518d\u7528CE\u641c\u7d22\u53d8\u5316\u7684\u6570\u503c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/dc160c3f619282d17fa327c345127cc6.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"162\" title=\"clip_image040\" alt=\"clip_image040\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b4d5de27ecd51aff2325428f86a2d30e.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u70b9\u51fb\u518d\u6b21\u626b\u63cf<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/36be102aabe855614f239eadcd3006e1.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"160\" title=\"clip_image042\" alt=\"clip_image042\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/37617fdc77fb2d40e8ecf61ee078c701.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u6837\u592a\u6162\u4e86\uff0c\u6211\u4eec\u53ef\u4ee5\u7528\u53d8\u52a8\u7684\u6570\u503c\u548c\u672a\u53d8\u52a8\u7684\u6570\u503c\u5207\u6362\u6765\u4e0d\u65ad\u641c\u7d22<\/p><p>\u6700\u540e\u5269\u4e86\u516b\u4e2a\u7ed3\u679c\u5b9e\u5728\u5206\u8fa8\u4e0d\u51fa\u6765\u4e86<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/4622bb7847b18afa8b7270f4944edf14.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"135\" title=\"clip_image044\" alt=\"clip_image044\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/8d90868d7ac5ccf1566972999d4ae22d.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u4e0d\u8fc7\u8fd9\u5c31\u591f\u4e86\uff0c\u6211\u4eec\u4e5f\u4e0d\u9700\u8981\u77e5\u9053\u90a3\u4e48\u7ec6\u81f4\uff0c\u968f\u4fbf\u9009\u4e00\u4e2a\uff0c\u53cc\u51fb\uff0c\u62c9\u5230\u4e0b\u9762\u7684\u754c\u9762\u91cc\uff0c\u53f3\u952e\u4ed6\u9009\u62e9 \u00a0\u627e\u51fa\u662f\u4ec0\u4e48\u6539\u5199\u4e86\u8fd9\u4e2a\u5730\u5740<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/42a31f9d88592b3df25f280adbbf1a95.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"184\" title=\"clip_image046\" alt=\"clip_image046\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/a31bfe6520686c1b8d722888ec335497.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/5b424e2b24bc8f3f9aea89c1183e514d.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"209\" title=\"clip_image048\" alt=\"clip_image048\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f6006326db64232d39cbba51d2701f1e.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u6ce8\u610f\u50cf\u8fd9\u6837\u7684\uff0c\u5730\u5740\u7279\u522b\u5927\u7684\uff0c\u4e00\u5b9a\u4e0d\u662f\u7a0b\u5e8f\u7684\u4ee3\u7801\uff0c\u8fd9\u4e2a\u662f\u7a0b\u5e8f\u8c03\u7528\u7684\u5e93\u7684\u5730\u5740<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/7d15d13f886ca822a85fb766f07cb757.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"209\" title=\"clip_image050\" alt=\"clip_image050\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/1c935cbaa115f591a89d23d7bae086a2.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u50cf\u8fd9\u683740\u6253\u5934\u7684\u624d\u662f\u7a0b\u5e8f\u7684\u4ee3\u7801\uff0c\u5177\u4f53\u8981\u770b\u7a0b\u5e8f\u7684PE\u5934\u91cc\u5b9a\u4e49\u7684\u57fa\u5730\u5740\uff0c\u4e00\u822c\u4e3a400000\u3002<\/p><p>\u7136\u540e\u6211\u4eec\u5c31\u53ef\u4ee5\u8bb0\u4f4f\u8fd9\u4e2a\u5730\u5740\uff0c\u7528OD\u6253\u5f00\u7a0b\u5e8f\uff0c\u5230\u8fd9\u4e2a\u5730\u5740\u770b\u770b\uff0cCE\u4e5f\u53ef\u4ee5\u770b\uff0c\u4f46\u662f\u5f88\u591a\u64cd\u4f5c\u4e0d\u65b9\u4fbf<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b71aeb5f25468f597d527607bb0bd1e4.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"152\" title=\"clip_image052\" alt=\"clip_image052\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f2b843817952b74b83ea566d0a7614f0.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u6bd5\u7adf\u4e0d\u662f\u4e13\u95e8\u7528\u6765\u8c03\u8bd5\u7a0b\u5e8f\u7684\u5e94\u7528\u3002<\/p><p>\u6211\u4eec\u7528OD\u9644\u52a0\u5230\u8fdb\u7a0b\u4e0a\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/597a68d49724e95f57f1e339441aa4f7.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"128\" title=\"clip_image054\" alt=\"clip_image054\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/be2f94fed399923d574357146f724d18.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>ctrl+g \u5230401D44\u770b\u770b<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/df6661bc9fefa1bb1b9ff475ec2507f3.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"140\" title=\"clip_image056\" alt=\"clip_image056\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f07f895d82ab09127f45a4493bdbbb50.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8ddd\u79bb\u6211\u4eec\u7b2c\u4e00\u6b21\u627e\u5230\u7684\u5173\u952e\u8df3\u8f6c\u4e5f\u5f88\u8fd1\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/112faf283bd26444385293ddb778449b.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"114\" title=\"clip_image058\" alt=\"clip_image058\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/d112a62e9bfca630b8f4f0775827cd97.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u4e4b\u95f4\u6709\u5927\u91cf\u7684\u68d5\u8272\u7684\u6d6e\u70b9\u6570\u8fd0\u7b97\uff0c\u800c\u5173\u952e\u8df3\u8f6c\u4e4b\u540e\u518d\u65e0\u6d6e\u70b9\u8fd0\u7b97\uff0c\u6240\u4ee5\u8fd9\u53ef\u80fd\u5c31\u662f\u7b97\u6cd5\u90e8\u5206\uff0c\u8fd9\u6b21\u6211\u4eec\u4ed4\u7ec6\u5206\u6790\u4e0b\u7b97\u6cd5\u90e8\u5206\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/c1d833d3852f03c971fe586dc29d691f.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"70\" title=\"clip_image060\" alt=\"clip_image060\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/aeb80b895f6dc6de66b010852c7f54a5.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u8fd9\u91cc\u53ef\u4ee5\u8bf4\u662f\u7b97\u6cd5\u90e8\u5206\u6700\u91cd\u8981\u7684\u56db\u6761\u4ee3\u7801\u4e86\uff0c\u4ece0x4010A8\u5b58\u50a8\u768410000\u5c31\u80fd\u770b\u51fa\u6765\uff0c\u5728\u6211\u89e3\u91ca\u6d6e\u70b9\u52a9\u8bb0\u7b26\u4e4b\u524d\uff0c\u6211\u8981\u5148\u89e3\u91ca\u4e00\u4e0b\u6d6e\u70b9\u8fd0\u7b97\uff1a<\/p><p>\u5728\u5305\u542b\u6d6e\u70b9\u8fd0\u7b97\u7684\u5904\u7406\u5668\u91cc\uff0c\u67098\u4e2a\u5bc4\u5b58\u5668\uff0c\u5206\u522b\u662fST0-ST7\uff0c\u4ed6\u4eec\u901a\u8fc7\u6d6e\u70b9\u52a9\u8bb0\u7b26\u6765\u8fdb\u884c\u6d6e\u70b9\u8fd0\u7b97\uff0c\u4ed6\u4eec\u7684\u4f7f\u7528\u65b9\u6cd5\u4e0e\u6808\u5f88\u7c7b\u4f3c\uff0c\u5b58\u50a8\u7684\u987a\u5e8f\u4eceST0\u5f00\u59cb\u5230ST7\uff0c\u5e38\u7528\u7684\u6d6e\u70b9\u52a9\u8bb0\u7b26\u6709\uff1a<\/p><blockquote><p>fld \u76f8\u5f53\u4e8epush<\/p><\/blockquote><blockquote><p>fstp \u76f8\u5f53\u4e8epop<\/p><\/blockquote><blockquote><p>fadd \u76f8\u5f53\u4e8eadd<\/p><\/blockquote><blockquote><p>fsub \u76f8\u5f53\u4e8esub<\/p><\/blockquote><blockquote><p>fdiv \u76f8\u5f53\u4e8ediv<\/p><\/blockquote><blockquote><p>fmul \u76f8\u5f53\u4e8emul<\/p><\/blockquote><blockquote><p>fstsw \u628a\u72b6\u6001\u5bc4\u5b58\u5668\u5b58\u5165\u5bc4\u5b58\u5668\u91cc<\/p><\/blockquote><blockquote><p>fcomp \u76f8\u5f53\u4e8ecmp<\/p><\/blockquote><p>\u518d\u5177\u4f53\u70b9\u7684\u7528\u6cd5\u6211\u4f1a\u5728\u7528\u7684\u65f6\u5019\u89e3\u91ca\uff0c\u73b0\u5728\u5728\u6700\u5f00\u59cb\u7684\u6d6e\u70b9\u8fd0\u7b97\u5904\u4e0b\u65ad\u70b9<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/1eb8c469a4d73c943021432ec00b3d07.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"128\" title=\"clip_image062\" alt=\"clip_image062\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/a4891eb9d8cc71b8f91511537b628a68.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u56e0\u4e3a\u4ee3\u7801\u8de8\u5ea6\u6709\u70b9\u5927\uff0c\u6211\u5c31\u4e0d\u4e00\u4e00\u622a\u56fe\u4e86\uff0c\u53ea\u628a\u5173\u952e\u4ee3\u7801\u5199\u4e0b\u6765<\/p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]<\/strong><\/p><\/blockquote><p>\u628a\u4ece[esi+0x34]\u5b58\u5165ST0<\/p><blockquote><p><strong>fadd qword ptr ds:[0x4010B0]<\/strong><\/p><\/blockquote><p>0x4010B0\u662f200.0\uff0c\u5373ST0+=200.0<\/p><blockquote><p><strong>fstp qword ptr ds:[esi+0x34]<\/strong><\/p><\/blockquote><p>\u5373[esi+0x34] = ST0<\/p><blockquote><p><strong>fstsw ax<\/strong><\/p><\/blockquote><p>\u628a\u72b6\u6001\u5bc4\u5b58\u5668\u5b58\u5165ax\uff0c\u5468\u56f4\u5e76\u6ca1\u6709\u53ef\u4ee5\u5f71\u54cd\u5230\u72b6\u6001\u5bc4\u5b58\u5668\u7684\u4ee3\u7801\uff0c\u6240\u4ee5\u5ffd\u7565\u5c31\u884c<\/p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]<\/strong><\/p><\/blockquote><p>\u5373ST0=[esi+0x34]<\/p><p><strong>fdiv qword ptr ds:[0x4010B0]<\/strong><\/p><p>\u5373ST0\/=200.0<\/p><blockquote><p><strong>fstp qword ptr ss:[esp]<\/strong><\/p><\/blockquote><p>\u5373[esp]=ST0\uff0c\u8fd9\u91cc\u5b58\u50a8\u7684\u5c31\u662f\u5b9e\u9645\u7684\u70b9\u51fb\u6570\u4e86<\/p><blockquote><p><strong>fclex<\/strong><\/p><\/blockquote><p>\u67e5\u4e86\u4e00\u4e0b\u662f\u53eb\u505a\u6d6e\u70b9\u68c0\u67e5\u9519\u8bef\u6e05\u9664\uff0c\u4e0d\u4f1a\u5f71\u54cd\u7ed3\u679c\u6240\u4ee5\u5ffd\u7565<\/p><blockquote><p><strong>fld qword ptr ds:[esi+0x34]<\/strong><\/p><\/blockquote><p>\u5373ST0=[esi+0x34]\uff0c<\/p><blockquote><p><strong>fdiv qword ptr ds:[0x4010B0]<\/strong><\/p><\/blockquote><p>\u5373ST0\/=200.0<\/p><blockquote><p><strong>fcomp qword ptr ds:[0x4010A8]<\/strong><\/p><\/blockquote><p>\u5373ST0\u4e0e10000\u6bd4\u8f83<\/p><blockquote><p><strong>fstsw ax<\/strong><\/p><\/blockquote><p>\u628a\u72b6\u6001\u5bc4\u5b58\u5668\u5b58\u5165ax<\/p><blockquote><p><strong>test ah,0x40<\/strong><\/p><\/blockquote><p>\u6bd4\u5bf9\u72b6\u6001\u5bc4\u5b58\u5668\uff0c<\/p><blockquote><p><strong>je 401e97<\/strong><\/p><\/blockquote><p>\u5173\u952e\u8df3\u8f6c<\/p><p>\u7136\u540e\u600e\u4e48\u6539\u5c31\u770b\u4e2a\u4eba\u559c\u6b22\u4e86\uff0c\u53ef\u4ee5\u50cf\u4e0a\u6b21\u4e00\u6837\u76f4\u63a5nop\u6389\u5173\u952e\u8df3\u8f6c\uff0c\u4e5f\u53ef\u4ee5\u4fee\u65390x4010B0\u91cc\u7684\u503c\u6765\u8fbe\u5230\u70b9\u4e00\u6b21\u7b49\u4e8e\u6570\u6b21\u7684\u6548\u679c\uff0c\u4e5f\u53ef\u4ee5\u76f4\u63a5\u4fee\u65390x4010A8\u91cc\u7684\u503c\uff0c\u8ba9\u4e00\u4e07\u6b21\u53d8\u62101\u6b21\u3002flag\u5904\u7406\u90e8\u5206\u4e0d\u518d\u8d58\u8ff0\u3002<\/p><p>\u540e\u6765\u6211\u67e5\u4e86\u4e00\u4e0b\uff0ctest ah,0x40 \u6bd4\u5bf9\u7684\u662f\u72b6\u6001\u5bc4\u5b58\u5668\u7684cf\u5bc4\u5b58\u5668\uff0c\u5373\u8fdb\u4f4d\u5bc4\u5b58\u5668\uff0c\u6240\u4ee5\u4ed6\u53ea\u4f1a\u5728\u4ece9999\u8fdb\u4f4d\u523010000\u65f6\u89e6\u53d1\uff0c<\/p><p>\u53ea\u7528CE\uff1a<\/p><p>\u8fd0\u884c\u7a0b\u5e8f\uff0c\u7528CE\u9644\u52a0\u4e0a<\/p><p>\u7531\u4e8e\u6211\u4eec\u5df2\u7ecf\u77e5\u9053\u4e86\u6570\u503c\u7684\u7c7b\u578b\u4e3a\u53cc\u6d6e\u70b9(\u53cc\u6d6e\u70b9\u6570\u5360\u516b\u4e2a\u5b57\u8282\uff0c\u6709\u6548\u6570\u5b5716\u4f4d\uff0c\u4e4b\u524d\u7684200.0\u53ef\u4ee5\u6570\u4e00\u4e0b\u6709\u6548\u6570\u5b57\u5c31\u77e5\u9053\u4e86\uff0c\u5373\u4f7f\u4e0d\u77e5\u9053\u7c7b\u578b\u4e3a\u53cc\u6d6e\u70b9\u4e5f\u53ef\u4ee5\u4e00\u4e2a\u4e2a\u8bd5\uff0c\u901a\u5e38\u6570\u636e\u5b58\u50a8\u7c7b\u578b\u53ea\u67094\u5b57\u8282\uff0c\u5355\u6d6e\u70b9\uff0c\u53cc\u6d6e\u70b9\u7c7b\u578b\uff0c\u5076\u5c14\u4e5f\u6709\u5355\u5b57\u8282\u7684\u5e03\u5c14\u7c7b\u578b)\uff0c\u6211\u4eec\u8bbe\u7f6e\u626b\u63cf\u7c7b\u578b\u4e3a\u672a\u77e5\u7684\u521d\u59cb\u503c\uff0c\u6570\u503c\u7c7b\u578b\u4e3a\u53cc\u6d6e\u70b9\u641c\u7d22\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/5f8a1b828e5c4afd61e3f22fa8b7519b.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"160\" title=\"clip_image064\" alt=\"clip_image064\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/562968f76a78144bdf4649b6e1da9510.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u7136\u540e\u7528 \u53d8\u52a8\u7684\u6570\u503c\/\u672a\u53d8\u52a8\u7684\u6570\u503c\u5207\u6362\u641c\u7d22\uff0c\u5f88\u5feb\u5c31\u641c\u7d22\u5230\u4e86\u4e00\u4e2a\u5f88\u624e\u773c\u7684\u6570\u503c\uff0c\u9664\u4e86\u8fd9\u4e2a2200\u90fd\u662f\u540e\u9762\u8ddf\u4e86\u5f88\u591a\u4e2a\u5c0f\u6570\u7684\u53cc\u6d6e\u70b9\u6570\uff0c\u7136\u540e\u75282200\/11\u5f97\u5230\u589e\u91cf200\uff0c<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/90462b1a832cb52c7162b215b6c454cf.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"176\" title=\"clip_image066\" alt=\"clip_image066\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/87c195942f018cbe7e1e638d19998019.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u53cc\u51fb\u628a\u4ed6\u52a0\u5165\u4e0b\u9762\u7684\u754c\u9762\uff0c\u8bbe\u7f6e\u5927\u5c0f\u4e3a1999800<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/b60b70fbb3ad75e93bd067554b711d12.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"61\" title=\"clip_image068\" alt=\"clip_image068\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/f03fcb29ce1aaa236a3ceb70245cb504.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/6a525622607183fb1780796e5d7303df.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"71\" title=\"clip_image070\" alt=\"clip_image070\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/42ff2814f5d126fe6263c291cc230168.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u7136\u540e\u70b9\u51fb\u7a0b\u5e8f\u7684\u6309\u94ae<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/e3ebdd35c02c9c64e538ba9c2877d3ab.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"187\" title=\"clip_image072\" alt=\"clip_image072\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/de49ac5df431a911688e1c08b031cd17.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p><p>\u5c31\u4ece11\u53d8\u6210\u4e86100000\uff0c\u4ece\u800c\u5f97\u5230flag<\/p><p>\u5f53\u7136\uff0c\u5982\u679c\u6211\u4eec\u77e5\u9053\u4e86\u589e\u91cf\u4e3a200\uff0c\u4e5f\u53ef\u4ee5\u76f4\u63a5\u641c\u7d22200*X<\/p><p><a href=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/07c66b1f86ef49b72f0227895fe36bbd.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\"><img width=\"244\" height=\"157\" title=\"clip_image074\" alt=\"clip_image074\" src=\"https:\/\/s1.51cto.com\/images\/blog\/201908\/14\/0a87904f43bf5944e7a6737f450779c6.jpg?x-oss-process=image\/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=\" \/><\/a><\/p>", '#result');
+  }
+
+  function insertCodeElement(content, container){
+    container = container || document;
+    // 创建一个 div 来放置获取到的内容，这样就可以把 content 字符串内容转换成 dom
+    // 方便我们对这个 dom 进行操作（只是创建 div，并没有插入到文档，他只存在于内存中）
+    var parent = document.createElement('div');
+    parent.innerHTML = content;
+
+    // 找到 parent 中的所有 pre 标签，并遍历
+    var $pres = $(parent).find('pre');
+    $pres.each(function(index, el) {
+      var $el = $(el),
+          html = $el.html(),
+          code = document.createElement('code'),
+          elClass = $el.attr('class');
+      if(!elClass) {return};
+          // 获取 pre 标签中，class 属性中包含的本段代码所有的编程语言
+      var language = elClass.substring(6, elClass.indexOf(';'));
+
+      code.className = 'language-' + language;
+      code.innerHTML = html;
+
+      $el.html(code);
+    });
+
+    $(container).html(parent.innerHTML);
+
+    // 最后，调用 Prism 的方法来高亮代码
+    Prism.highlightAll();
+  }
+	window._bd_share_config={
+    "common":{
+      "bdText":"bugku 不好用的CE WriteUp",
+      "bdDesc":$("#abstract_bdshare").text(),
+      "bdMini":"2",
+      "bdMiniList":false,
+      "bdPic":"https://s1.51cto.com/images/201710/25/bd540a4f14d822f6e69087758699358b.jpg",
+      "bdStyle":"0",
+      "bdSize":"16"
+    },
+    "share":{}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+  setTimeout(function(){
+  	$('.bdsharebuttonbox a').removeAttr('title')
+  },1000);
+
+	var now_time = 1573693653; //当前时间
+  setInterval(function(){now_time+=0.01},10);
+
+  // 初始化页面
+  updatePage();
+  // 页面tab切换
+  zDate.visibilityAction(function () {
+    zDate.getServerTime(function (e) {
+      var updateResult = new Date(e).getTime();
+      now_time = +updateResult.toString().substr(0, 10);
+      updatePage();
+    });
+   })
+  // 定时刷新现在时间
+  setInterval(function () {
+    zDate.getServerTime(function (e) {
+      var updateResult = new Date(e).getTime();
+      now_time = +updateResult.toString().substr(0, 10);
+      updatePage();
+    });
+  }, 1000*60*2);
+  // 页面刷新
+  function updatePage() {
+    $('.presell').each(function(index, item) {
+      var end_time = $(this).data('end'); // 结束时间
+      if (!end_time) {
+        return;
+      }
+      var me = $(this);
+      if (me.lastTime) {
+        clearInterval(me.lastTime);
+        me.lastTime = null;
+      } else {
+        me.lastTime = setInterval(function() {
+          zDate.setLastTimePc(me.find('.timespan'), (end_time*1000-now_time*1000), me.lastTime, function() {
+						me.parents('.right').find('.cloumn-subscribe').removeClass('presell-color');
+						me.remove();
+						$('.pre-tips').remove();
+					});
+        }, 10);
+      }
+    });
+  }
+		//二维码显示
+		$(".group_git_box").hover(function(){
+			$(this).parents('.group_img_box').find(".group_code_box").show()
+		},function(){
+			$(this).parents('.group_img_box').find(".group_code_box").hide()
+		})  
+</script>
+</div><div id="zhichiBtnBox" style="position: fixed; z-index: 2147483583; box-shadow: rgba(15, 66, 76, 0.25) 0px 0px 14px 0px; width: 60px; height: 60px; border-radius: 50%; background-color: rgb(66, 133, 244); background-image: url(&quot;//www.sobot.com/chat/frame/imgs/icon.png&quot;); background-repeat: no-repeat; background-position: 18px -58px; right: 40px; bottom: 90px; display: none;"><a hidefocus="" id="zhichiBtn" style="position:relative;text-decoration: none; outline: none; font-family: Microsoft Yahei, Arial, Helvetica; color: #fff; font-size: 16px; display: inline-block; margin: 0; padding: 0; border: none; line-height:43px; float:none;width:100%;height:100%;border-radius:50%;"><span class="zc-advice-icon-btn-title" style="box-shadow: rgba(107, 113, 114, 0.15) 0px 2px 4px 0px; border: 1px solid rgb(235, 239, 240); font-family: &quot;Microsoft Yahei&quot;, Arial, Helvetica; color: rgb(85, 85, 86); font-size: 13px; margin: 0px; text-align: right; background: rgb(255, 255, 255); position: absolute; top: 15px; right: 70px; text-overflow: ellipsis; white-space: nowrap; word-break: normal; display: none; border-radius: 3px; padding: 0px 5px; height: 30px; line-height: 30px;">咨询在线客服</span></a><i style="position:absolute;top:0px;right:0px;padding:1px;line-height:20px;text-align:center;color:#fff;font-weight:bold;height:18px;min-width:18px;background-color:#ed5c5c;border-radius:18px;font-size:12px;display:none;font-style:normal;" id="zhichiCount"></i></div>
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/marked.min.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/highlight.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/detail_mp.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/detail.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/details_new.js"></script><script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/copy.js"></script>    
+<div style="display:none">
+    <iframe frameborder="0" scrolling="no" width="0" height="0" src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/pageview.html"></iframe>
+</div>
+
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/pvlog.js"></script>
+<script>
+  $(".gotop").click(function(){$(window).scrollTop(0)})
+</script>
+
+
+    <script type="text/javascript">
+    //百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2283d46608159c3b39fc9f1178809c21";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+
+    //自动推送链接
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+    <script type="text/javascript">
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '8c51975c40edfb67']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'assets.growingio.com/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+      //document.write(decodeURI("%3Cscript src='https://tongji.51cto.com/frontend/tj.gif' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    
+<script>
+  var uid = '';
+  var BLOG_URL = 'https://blog.51cto.com/';
+</script>
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/jquery.cookie.js"></script>
+<script src="./bugku 不好用的CE WriteUp-qq5bacb6a23760b的博客-51CTO博客_files/time-on-page.js" charset="utf-8"></script>
+<script>
+    (function(){
+        var wh=$(window).height(),fh=$('.Footer').outerHeight(true),hh=$('.Header').outerHeight(true)
+        $('.Content-box').css({'min-height': wh-fh-hh})
+    })()
+</script>
+
+
+</body></html>
