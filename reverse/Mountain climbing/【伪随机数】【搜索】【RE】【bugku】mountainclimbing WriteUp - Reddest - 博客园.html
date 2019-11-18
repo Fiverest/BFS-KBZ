@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.cnblogs.com/reddest/p/9650175.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="Mountain Climbing WP 拿到题首先熟练地查个壳再用各种脱壳工具脱个壳。 脱壳之后熟练地双击感受一下出题者的恶意： 根据字面意思得知，是要根据一系列的操作来得到收益最大值，于是用ida">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园</title>
+    
+    <link rel="stylesheet" href="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/bundle-blacklowkey.min.css">
+    
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/bundle-blacklowkey-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/reddest/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/reddest/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/reddest/wlwmanifest.xml">
+    <script async="" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/analytics.js"></script><script type="text/javascript" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/encoder.js"></script><script src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/jquery-2.2.0.min.js"></script><style type="text/css"></style>
+    <script src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/blog-common.min.js"></script>
+    <script>
+        var currentBlogId = 307818;
+        var currentBlogApp = 'reddest';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/f.txt"></script><script src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/pubads_impl_2019111201.js" async=""></script></head><style type="text/css" id="238649800250"></style>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/reddest/"><img id="blogLogo" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/reddest/">Reddest</a>
+</h1>
+<h2>
+
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/reddest/">
+首页</a>
+</li>
+<li>
+
+
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" href="https://msg.cnblogs.com/send/Reddest">
+联系</a></li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/reddest/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+39&nbsp; </span>
+<span id="stats_article_count">文章 - 
+1&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+19</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/reddest/p/9650175.html">【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body ">
+    <h1 style="text-align: center;">Mountain Climbing WP</h1>
+<h3>　　拿到题首先熟练地查个壳再用各种脱壳工具脱个壳。</h3>
+<h3>　　脱壳之后熟练地双击感受一下出题者的恶意：</h3>
+<p><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915094536095-517130173.png" alt=""></p>
+<h3>　　根据字面意思得知，是要根据一系列的操作来得到<em><span style="color: #ff2600;">收益</span></em><em><span style="color: #ff0000;">最大值</span></em>，于是用ida打开并f5出来研究出题者是想让我们如何操作：</h3>
+<p><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915095243608-118278510.png" alt=""></p>
+<h3>　　76和82分别是“L”和“R”的ASCII码值，所以联想到操作只有左移和右移。在来看看这段代码的其他部分：</h3>
+<p><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915095641351-721340269.png" alt=""></p>
+<h3>　　这一部分相当于利用伪随机数构造了一个直角三角形的数表。由于是伪随机数，<span style="color: #ff2600;"><em>只要随机数种子srand()的值一样，构造出来的数表也是一样的</em></span>。这里的随机数种子是srand(0xCu)也就是srand(12)，自行写脚本构造出来一个一样的随机数表：</h3>
+<p>　<img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915100404487-1898358536.png" alt=""></p>
+<h3>　　这样就很明了了，题目意图是让我们从三角形数表的“山顶”开始一步步往下走，<em><span style="color: #ff2600;">每次选择上一个节点的左子节点或右子节点下山，找出路线上所有数字和最大的那一条路线</span></em>。于是利用随便一种搜索算法搜最优路线即可，这里用深度优先搜索举个例子：</h3>
+<p>　　</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080;"> 1</span> #include &lt;cstdio&gt;
+<span style="color: #008080;"> 2</span> #include &lt;ctime&gt;
+<span style="color: #008080;"> 3</span> #include &lt;windows.h&gt;
+<span style="color: #008080;"> 4</span> <span style="color: #0000ff;">using</span> <span style="color: #0000ff;">namespace</span><span style="color: #000000;"> std;
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">int</span> mt[<span style="color: #800080;">100</span>][<span style="color: #800080;">100</span><span style="color: #000000;">];
+</span><span style="color: #008080;"> 6</span> <span style="color: #0000ff;">int</span> save[<span style="color: #800080;">30</span>],ans[<span style="color: #800080;">30</span><span style="color: #000000;">];
+</span><span style="color: #008080;"> 7</span> <span style="color: #0000ff;">int</span> MAXN = -<span style="color: #800080;">1</span><span style="color: #000000;">;
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">void</span> dfs(<span style="color: #0000ff;">int</span> h,<span style="color: #0000ff;">int</span> l,<span style="color: #0000ff;">int</span><span style="color: #000000;"> sum){
+</span><span style="color: #008080;"> 9</span>     sum +=<span style="color: #000000;"> mt[h][l];
+</span><span style="color: #008080;">10</span>     <span style="color: #0000ff;">if</span>(h == <span style="color: #800080;">20</span><span style="color: #000000;">){
+</span><span style="color: #008080;">11</span>         <span style="color: #0000ff;">if</span>(sum &gt;=<span style="color: #000000;"> MAXN){
+</span><span style="color: #008080;">12</span>             MAXN =<span style="color: #000000;"> sum;
+</span><span style="color: #008080;">13</span>             memcpy(ans,save,<span style="color: #0000ff;">sizeof</span><span style="color: #000000;">(save));
+</span><span style="color: #008080;">14</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">15</span>         <span style="color: #0000ff;">return</span><span style="color: #000000;"> ;
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">    }
+</span><span style="color: #008080;">17</span>     save[h] = <span style="color: #800080;">0</span><span style="color: #000000;">;
+</span><span style="color: #008080;">18</span>     dfs(h + <span style="color: #800080;">1</span><span style="color: #000000;">,l,sum);
+</span><span style="color: #008080;">19</span>     save[h] = <span style="color: #800080;">1</span><span style="color: #000000;">;
+</span><span style="color: #008080;">20</span>     dfs(h + <span style="color: #800080;">1</span>,l + <span style="color: #800080;">1</span><span style="color: #000000;">,sum);
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">22</span> <span style="color: #0000ff;">int</span><span style="color: #000000;"> main(){
+</span><span style="color: #008080;">23</span>     srand(<span style="color: #800080;">12</span><span style="color: #000000;">);
+</span><span style="color: #008080;">24</span>     <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">1</span>;i &lt;= <span style="color: #800080;">20</span>;++<span style="color: #000000;">i)
+</span><span style="color: #008080;">25</span>         <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> j = <span style="color: #800080;">1</span>;j &lt;= i;++<span style="color: #000000;">j)
+</span><span style="color: #008080;">26</span>             mt[i][j] = rand() % <span style="color: #800080;">100000</span><span style="color: #000000;">;
+</span><span style="color: #008080;">27</span>     dfs(<span style="color: #800080;">1</span>,<span style="color: #800080;">1</span>,<span style="color: #800080;">0</span><span style="color: #000000;">);
+</span><span style="color: #008080;">28</span>     <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i = <span style="color: #800080;">1</span>;i &lt;= <span style="color: #800080;">19</span>;++<span style="color: #000000;">i)
+</span><span style="color: #008080;">29</span>         <span style="color: #0000ff;">if</span><span style="color: #000000;">(ans[i])
+</span><span style="color: #008080;">30</span>             printf(<span style="color: #800000;">"</span><span style="color: #800000;">R</span><span style="color: #800000;">"</span><span style="color: #000000;">);
+</span><span style="color: #008080;">31</span>         <span style="color: #0000ff;">else</span> printf(<span style="color: #800000;">"</span><span style="color: #800000;">L</span><span style="color: #800000;">"</span><span style="color: #000000;">);    
+</span><span style="color: #008080;">32</span>     <span style="color: #0000ff;">return</span> <span style="color: #800080;">0</span><span style="color: #000000;">;
+</span><span style="color: #008080;">33</span> }</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<h3>　　当我把搜索到的最优解输进去之后...</h3>
+<p><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915101535788-1647354543.png" alt=""></p>
+<h3>　　嗯？？？error是什么情况？？？在反复确认搜索脚本无误后决定打开ollydbg一探究竟。在我试验性地输入字符串LLLLLLLLLLRRRRRRRRR后，字符串被原封不动的保存下来：</h3>
+<p>　　<img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915101918685-1583566618.png" alt=""></p>
+<h3>　　而当我调试经过004114F这个函数过后，我输入的字符串发生了有规律的改变：</h3>
+<p>　　<img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/1032232-20180915102228594-1575825884.png" alt=""></p>
+<h3>　　再试验几个由“H”和“V”构成的字符串后发现，004114F这个加密函数是将<span style="font-style: italic; color: #ff2600;">偶数位的L与H互换，偶数位的R与V互换</span><span>。于是将原来深搜的结果进行相应的转换，便是flag中括号里的内容了。</span></h3>
+</div>
+<div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/reddest/category/1296922.html" target="_blank">逆向工程</a></div>
+
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(9650175,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;04ac280b-0b82-e611-9fc1-ac853d9f53cc&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/reddest/" target="_blank"><img src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/20161005203244.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/reddest/">Reddest</a><br>
+            <a href="https://home.cnblogs.com/u/reddest/followees/">关注 - 17</a><br>
+            <a href="https://home.cnblogs.com/u/reddest/followers/">粉丝 - 21</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;04ac280b-0b82-e611-9fc1-ac853d9f53cc&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(9650175,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(9650175,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/reddest/p/9614302.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/reddest/p/9614302.html" title="发布于 2018-09-09 17:31">【Data URL】【RE】【bugku】逆向入门writeup</a>
+    <br>
+    <a href="https://www.cnblogs.com/reddest/p/9803268.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/reddest/p/9803268.html" title="发布于 2018-10-17 14:17">【线性求质数】【最小质因数】浅析欧拉筛</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2018-09-15 10:29</span>&nbsp;<a href="https://www.cnblogs.com/reddest/">Reddest</a> 阅读(<span id="post_view_count">708</span>) 评论(<span id="post_comment_count">0</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=9650175" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(9650175); return false;">收藏</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/highlight.min.js"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 307818, cb_blogApp = 'reddest', cb_blogUserGuid = '04ac280b-0b82-e611-9fc1-ac853d9f53cc';
+    var cb_entryId = 9650175, cb_entryCreatedDate = '2018-09-15 10:29', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/reddest/p/9650175.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/reddest/p/9650175.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://cloud.tencent.com/act/pro/overseas?fromSource=gwzcw.3090393.3090393.3090393&amp;utm_medium=cpc&amp;utm_id=gwzcw.3090393.3090393.3090393" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云海外1核2G云服务器低至2折，半价续费券限量免费领取！</a><br><a href="https://www.jdcloud.com/cn/activity/year-end?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=q4vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-京东云&#39;)">【活动】京东云服务器_云主机低于1折，低价高性能产品备战双11</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://ke.qq.com/huodong/mashibing_pc/index.html?from=800018451" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-马士兵&#39;)">【培训】马士兵老师一对一职业规划指导！程序员突破年薪80W！</a><br><a href="https://www.ctyun.cn/activity/20191111?hmsr=%E7%9C%8B%E7%9C%8B-%E5%8D%9A%E5%AE%A2%E5%9B%AD-%E5%8F%8C11-1106&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】天翼云双十一翼降到底，云主机11.11元起，抽奖送大礼</a><br><a href="https://ke.qq.com/huodong/xiangxueketang_pc/index.html?from=800018909" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-享学&#39;)">【培训】2019年这些技术点你都不懂的话，如何去争取高薪呢？</a><br><a href="https://www.uibot.com.cn/sem/bky.html" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-uibot_T2&#39;)">【推荐】流程自动化专家UiBot，体系化教程成就高薪RPA工程师</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/gpt.js"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block">
+        <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="http://ctf.bugku.com/challenges#Mountain%20climbing:bugku--Mountain-Climbing" href="https://www.cnblogs.com/HYWZ36/p/10297775.html" target="_blank" onclick="clickRecomItmem(10297775)">http://ctf.bugku.com/challenges#Mountain%20climbing:bugku--Mountain-Climbing</a><br>·  <a title="【bugku】【ZSCTF】【迷宫RE】TakeTheMazeWriteUp" href="https://www.cnblogs.com/reddest/p/10121550.html" target="_blank" onclick="clickRecomItmem(10121550)">【bugku】【ZSCTF】【迷宫RE】TakeTheMazeWriteUp</a><br>·  <a title="BUGKU-逆向(reverse)-writeup" href="https://www.cnblogs.com/zhengjim/p/10002657.html" target="_blank" onclick="clickRecomItmem(10002657)">BUGKU-逆向(reverse)-writeup</a><br>·  <a title="【DataURL】【RE】【bugku】逆向入门writeup" href="https://www.cnblogs.com/reddest/p/9614302.html" target="_blank" onclick="clickRecomItmem(9614302)">【DataURL】【RE】【bugku】逆向入门writeup</a><br>·  <a title="【bugku】【RE】fileWriteUp" href="https://www.cnblogs.com/reddest/p/10124258.html" target="_blank" onclick="clickRecomItmem(10124258)">【bugku】【RE】fileWriteUp</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/9650175">更多推荐...</a></div></div>
+    <div id="cnblogs_c2" class="c_ad_block">
+        <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        </div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/647677/" target="_blank">微软将开放神经网络交换格式贡献给 Linux 基金会</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647678/" target="_blank">5G浪潮滚滚而来，美国究竟有多少边缘计算公司？</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647676/" target="_blank">Linux 市场估值将超 70 亿美元，主要原因是安全与开源需求</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647675/" target="_blank">波士顿动力CEO：租台机器狗每月几万元</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647674/" target="_blank">AMD撕裂者TR4、霄龙SP3接口定义首次公布：大量未知</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+
+
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    <div id="sidebar_search" class="mySearch">
+        <h3 class="catListTitle">搜索</h3>
+        <div id="sidebar_search_box">
+            <div id="widget_my_zzk" class="div_my_zzk">
+                <input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk">
+            </div>
+            <div id="widget_my_google" class="div_my_zzk">
+                <input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+
+
+
+<!-- 我的标签 -->
+<div id="sidebar_toptags" class="sidebar-block">
+    
+</div>
+
+<!-- 积分与排名 -->
+
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/890712.html" rel="" target="">
+    倍增(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/886878.html" rel="" target="">
+    迭代加深搜索(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/894471.html" rel="" target="">
+    动态规划(18)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/889812.html" rel="" target="">
+    对拍(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/1288936.html" rel="" target="">
+    加密与编码(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/889244.html" rel="" target="">
+    矩阵乘法(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/896196.html" rel="" target="">
+    乱搞(6)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/1296922.html" rel="" target="">
+    逆向工程(4)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/890690.html" rel="" target="">
+    强连通分量(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/1331965.html" rel="" target="">
+    数据结构(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/896472.html" rel="" target="">
+    数学(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/896174.html" rel="" target="">
+    贪心(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/category/893966.html" rel="" target="">
+    最短路(1)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔档案
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2018/12.html" rel="" target="">
+    2018年12月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2018/10.html" rel="" target="">
+    2018年10月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2018/09.html" rel="" target="">
+    2018年9月(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2018/08.html" rel="" target="">
+    2018年8月(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2016/10.html" rel="" target="">
+    2016年10月(29)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/reddest/archive/2016/09.html" rel="" target="">
+    2016年9月(3)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+        <div id="sidebar_links1354717" class="catList sidebar-block">
+            <h3 class="catListTitle">
+                
+
+大佬们的博客
+
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="http://minhal.cn/" rel="nofollow noopener noreferrer" target="">
+    Minhal
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/A-S-KirigiriKyoko/" rel="nofollow noopener noreferrer" target="">
+    糖饼
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/wjting/" rel="nofollow noopener noreferrer" target="">
+    guitar
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/alpharplediz/" rel="nofollow noopener noreferrer" target="">
+    Alpar
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/Gster/" rel="nofollow noopener noreferrer" target="">
+    Gster
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/Maki-Nishikino/" rel="nofollow noopener noreferrer" target="">
+    妃妃
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/shadowland/" rel="nofollow noopener noreferrer" target="">
+    SHHHS
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/uncle-lu/" rel="nofollow noopener noreferrer" target="">
+    卢表叔
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xqmmcqs/" rel="nofollow noopener noreferrer" target="">
+    毛增
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/CtrlCV/" rel="nofollow noopener noreferrer" target="">
+    CtrlCV
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/PencilWang/" rel="nofollow noopener noreferrer" target="">
+    WA
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/Kotori-Minami/" rel="nofollow noopener noreferrer" target="">
+    AK自动机
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/xinglanxiang/" rel="nofollow noopener noreferrer" target="">
+    NBS
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/haizhe/" rel="nofollow noopener noreferrer" target="">
+    海哲
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/lieweidu/" rel="nofollow noopener noreferrer" target="">
+    烈维度
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/bzmd/" rel="nofollow noopener noreferrer" target="">
+    bzmd
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+<div id="sidebar_recentcomments" class="sidebar-block">
+    <div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div class="RecentCommentBlock">
+        <ul>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/reddest/p/5932153.html#4202463">1. Re:【强连通分量】tarjan算法及kosaraju算法＋例题</a></li>
+                    <li class="recent_comment_body">幻想乡???</li>
+                    <li class="recent_comment_author">--背嵬</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/reddest/p/5925018.html#4178550">2. Re:对拍程序讲解及源码举例</a></li>
+                    <li class="recent_comment_body">windows.h库能在linux下运行吗？</li>
+                    <li class="recent_comment_author">--sp201604</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/reddest/p/5925018.html#4174852">3. Re:对拍程序讲解及源码举例</a></li>
+                    <li class="recent_comment_body">我太蠢了 还是不会</li>
+                    <li class="recent_comment_author">--PPXppx</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/reddest/p/9884998.html#4158378">4. Re:【数据结构】【平衡树】浅析树堆Treap</a></li>
+                    <li class="recent_comment_body">还是小红讲的清楚，谢谢小红</li>
+                    <li class="recent_comment_author">--不务正业的歌姬</li>
+                    <li class="recent_comment_title"><a href="https://www.cnblogs.com/reddest/p/5932153.html#4158375">5. Re:【强连通分量】tarjan算法及kosaraju算法＋例题</a></li>
+                    <li class="recent_comment_body">新年%大佬</li>
+                    <li class="recent_comment_author">--不务正业的歌姬</li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/reddest/p/5932153.html">
+                            1. 【强连通分量】tarjan算法及kosaraju算法＋例题(5676)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/reddest/p/5905649.html">
+                            2. 迭代加深搜索[codevs1004 四子连棋](4202)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/reddest/p/5925018.html">
+                            3. 对拍程序讲解及源码举例(4138)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/reddest/p/5919686.html">
+                            4. 矩阵乘法及简易公式推导(1436)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/reddest/p/5933051.html">
+                            5. 说一说ST表 讲一讲水题(831)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+
+
+<!-- 推荐排行榜 -->
+</div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 Reddest
+<br><span id="poweredby">Powered by .NET Core 3.0.0 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+
+</body><iframe name="gpt_fetch_frame" src="./【伪随机数】【搜索】【RE】【bugku】mountainclimbing WriteUp - Reddest - 博客园_files/fetch_frame_2019111201.html" data-ready="true" style="display: none;"></iframe></html>
